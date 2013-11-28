@@ -2,10 +2,10 @@ package game;
 
 import org.lwjgl.util.vector.Vector2f;
 
-public class Velocity2f {
+public class MyVector2f {
     private Vector2f vector;
     
-    public Velocity2f(float x, float y) {
+    public MyVector2f(float x, float y) {
 	this.vector = new Vector2f(x, y);
     }
     
