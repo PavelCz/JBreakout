@@ -47,8 +47,7 @@ public class MyVector2f {
 		this.angleRadians = normalizeAngle(this.angleRadians);
 		this.setX((float) (this.length * Math.cos(this.angleRadians)));
 		this.setY((float) (this.length * Math.sin(this.angleRadians)));
-		
-		
+
 	}
 	public void rotateDegrees(float angle) {
 		this.angleRadians += this.calculateRadians(angle);
