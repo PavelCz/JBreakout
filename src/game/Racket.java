@@ -14,7 +14,7 @@ public class Racket extends Entity {
 	super(gameWindow);
 	
 
-	this.speed = 0.5f;
+	this.speed = 0.75f;
 	this.width = 100;
 	this.height = 25;
 	this.coordinates = new Vector2f((this.gameWindow.getWidth() - this.width) / 2, this.gameWindow.getHeight() - this.height

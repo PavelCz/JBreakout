@@ -18,8 +18,6 @@ public class Ball extends Entity {
 				this.coordinates.getY(), this.length);
 
 		this.velocity = new MyVector2f(0.1f, 0.5f);
-
-		this.velocity = new MyVector2f(0.1f, 0.5f);
 	}
 
 	public void update(int delta) {
@@ -46,7 +44,11 @@ public class Ball extends Entity {
 
 				this.coordinates.setX(previousX);
 				this.coordinates.setY(racket.getY() - this.length);
-				this.velocity.setY(this.velocity.getY() * (-1));
+				//this.velocity.setAngleRadians((float) (distanceToRacketMiddle
+				//		* 0.02 * 0.25* Math.PI + 0.5 * Math.PI));
+				this.velocity.setAngleDegrees((distanceToRacketMiddle/50 * 45 + 90) * -1);
+				//this.velocity.setX(this.velocity.getX() + distanceToRacketMiddle/500);
+
 			}
 		}
 	}
