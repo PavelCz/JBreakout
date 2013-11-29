@@ -17,10 +17,9 @@ public class Ball extends Entity {
 		this.renderObject = new Square(this.coordinates.getX(),
 				this.coordinates.getY(), this.length);
 
-		// this.renderObject.setColor(0f, 0f, 1f);
+		this.velocity = new MyVector2f(0.1f, 0.5f);
 
 		this.velocity = new MyVector2f(0.1f, 0.5f);
-		// this.velocity = new Vector2f(0.01f, 0.01f);
 	}
 
 	public void update(int delta) {
@@ -41,10 +40,10 @@ public class Ball extends Entity {
 		if (this.coordinates.getX() + this.length >= racket.getX()
 				&& this.coordinates.getX() <= racket.getX() + racket.getWidth()) {
 			if (this.coordinates.getY() + this.length >= racket.getY()) {
-				float racketMiddle = this.game.getRacket().getX() + this.game.getRacket().getWidth() /2;
+				float racketMiddle = this.game.getRacket().getX()
+						+ this.game.getRacket().getWidth() / 2;
 				float distanceToRacketMiddle = racketMiddle - this.getX();
-				
-				
+
 				this.coordinates.setX(previousX);
 				this.coordinates.setY(racket.getY() - this.length);
 				this.velocity.setY(this.velocity.getY() * (-1));
