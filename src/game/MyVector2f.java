@@ -6,6 +6,7 @@ public class MyVector2f {
 	private Vector2f vector;
 	private float angleRadians;
 	private float length;
+	private int lol;
 
 	public MyVector2f(float x, float y) {
 		this.vector = new Vector2f(x, y);
