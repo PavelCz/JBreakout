@@ -2,6 +2,14 @@ package game;
 
 import org.lwjgl.util.vector.Vector2f;
 
+/**
+ * @author pavel.czempin
+ *
+ */
+/**
+ * @author pavel.czempin
+ *
+ */
 public class MyVector2f {
 	private Vector2f vector;
 	private float angleRadians;
@@ -76,13 +84,20 @@ public class MyVector2f {
 		this.updateCoordinatesByLengthAndAngle();
 
 	}
-
+	
+	/**
+	 * Updates the Coordinates using the current length and angle
+	 */
 	private void updateCoordinatesByLengthAndAngle() {
-
 		this.setX((float) (this.length * Math.cos(this.angleRadians)));
 		this.setY((float) (this.length * Math.sin(this.angleRadians)));
 	}
 
+	/**
+	 * Takes an angle in Radians and returns the Angle in Degrees
+	 * @param angleRadians
+	 * @return the same Angle in degrees
+	 */
 	private float calculateDegrees(float angleRadians) {
 		return (float) (angleRadians * 57.2957795);
 	}
