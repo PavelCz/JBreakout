@@ -34,6 +34,11 @@ public class MyVector2f {
 	public float getLength() {
 		return this.length;
 	}
+	
+	public void setLength(float length) {
+		this.length = length;
+		this.updateCoordinatesByLengthAndAngle();
+	}
 
 	public float getAngleRadians() {
 		return this.angleRadians;
@@ -47,37 +52,35 @@ public class MyVector2f {
 		this.angleRadians += angle;
 
 		this.angleRadians = normalizeAngle(this.angleRadians);
-		this.setX((float) (this.length * Math.cos(this.angleRadians)));
-		this.setY((float) (this.length * Math.sin(this.angleRadians)));
+		this.updateCoordinatesByLengthAndAngle();
 
 	}
 
 	public void rotateDegrees(float angle) {
 		this.angleRadians += this.calculateRadians(angle);
 		this.angleRadians = normalizeAngle(this.angleRadians);
-		this.setX((float) (this.length * Math.cos(this.angleRadians)));
-		this.setY((float) (this.length * Math.sin(this.angleRadians)));
+		this.updateCoordinatesByLengthAndAngle();
 
 	}
 
 	public void setAngleDegrees(float angle) {
 		this.angleRadians = this.calculateRadians(angle);
 		this.angleRadians = normalizeAngle(this.angleRadians);
-		this.setX((float) (this.length * Math.cos(this.angleRadians)));
-		this.setY((float) (this.length * Math.sin(this.angleRadians)));
+		this.updateCoordinatesByLengthAndAngle();
 
 	}
 
 	public void setAngleRadians(float angle) {
 		this.angleRadians = angle;
 		this.angleRadians = normalizeAngle(this.angleRadians);
-		this.setX((float) (this.length * Math.cos(this.angleRadians)));
-		this.setY((float) (this.length * Math.sin(this.angleRadians)));
+		this.updateCoordinatesByLengthAndAngle();
+
+	}
+
+	private void updateCoordinatesByLengthAndAngle() {
 
 		this.setX((float) (this.length * Math.cos(this.angleRadians)));
 		this.setY((float) (this.length * Math.sin(this.angleRadians)));
-
-		this.angleRadians = normalizeAngle(this.angleRadians);
 	}
 
 	private float calculateDegrees(float angleRadians) {

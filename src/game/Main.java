@@ -6,8 +6,8 @@ public class Main {
 		MyVector2f m = new MyVector2f(10, 10);
 		m.setAngleDegrees(55);
 		System.out.println(m.getLength());
-		System.out.println(m.getAngleDegrees());
-		System.out.println(m.getAngleRadians());
+		m.setLength(m.getLength() + 5);
+		System.out.println(m.getLength());
 
 		Game game = new Game();
 		game.init();
