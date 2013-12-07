@@ -24,8 +24,8 @@ public abstract class Entity {
 	}
 
 	public void update(int delta) {
-		this.renderObject.setCoordinates(this.coordinates.getX(),
-				this.coordinates.getY());
+		//this.renderObject.setCoordinates(this.coordinates.getX(),
+		//		this.coordinates.getY());
 		this.renderObject.update();
 	}
 

@@ -19,8 +19,7 @@ public class Racket extends Entity {
 				(this.gameWindow.getWidth() - this.width) / 2,
 				this.gameWindow.getHeight() - this.height - 50);
 
-		this.renderObject = new Rectangle(coordinates.getX(),
-				coordinates.getY(), width, height);
+		this.renderObject = new Rectangle(width, height);
 		this.renderObject.setColor(0f, 0f, 1f);
 
 	}

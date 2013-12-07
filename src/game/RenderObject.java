@@ -3,7 +3,7 @@ package game;
 import org.lwjgl.util.vector.Vector2f;
 
 public abstract class RenderObject {
-	protected Vector2f coordinates;
+	//protected Vector2f coordinates;
 	
 	public abstract void update();
 
@@ -11,7 +11,7 @@ public abstract class RenderObject {
 	
 	public abstract void setColor(float r, float g, float b);
 
-	public void setCoordinates(float x, float y) {
+	/*public void setCoordinates(float x, float y) {
 		this.coordinates.setX(x);
 		this.coordinates.setY(y);
 	}
@@ -22,7 +22,7 @@ public abstract class RenderObject {
 
 	public void setY(float y) {
 		this.coordinates.setY(y);
-	}
+	}*/
 	
 	
 }

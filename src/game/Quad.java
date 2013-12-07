@@ -1,29 +1,31 @@
-package game;
+// Quad unsupported for now
+
+/*package game;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
 
-/**
+*//**
  * @author Pavel
  * 
  *         Generates a Quad. After the constructor the addCoordinate function must be called 4 times, or else the remaining Vertices
  *         will have default Coordinates.
- */
-public class Quad /*extends RenderObject*/ {
+ *//*
+public class Quad extends RenderObject {
 	private Vector3f colorsRGB;
 	//private float alpha = 1;
 	private Vector2f[] coordinates;
 	private int coordinatesGiven;
 
 	public Quad() {
-		this.coordinates = new Vector2f[4];
+		//this.coordinates = new Vector2f[4];
 		this.coordinatesGiven = 0;
 	}
 
 	public Quad(float x0, float y0, float x1, float y1, float x2, float y2, float x3, float y3) {
 		this.coordinatesGiven = 4;
-		this.coordinates = new Vector2f[4];
+		//this.coordinates = new Vector2f[4];
 		for(int i = 0; i < 4; ++i) {
 			this.coordinates[i]= new Vector2f();
 		}
@@ -92,12 +94,12 @@ public class Quad /*extends RenderObject*/ {
 		
 	}
 
-	/*public void addCoordinate(float x, float y) {
+	public void addCoordinate(float x, float y) {
 		if (coordinatesGiven < 4) {
 			this.coordinates[this.coordinatesGiven] = new Vector2f(x, y);
 			++coordinatesGiven;
 		}
-	}*/
+	}
 
 	public void render(float x, float y) {
 
@@ -106,10 +108,11 @@ public class Quad /*extends RenderObject*/ {
 
 		// draw quad
 		GL11.glBegin(GL11.GL_QUADS);
-		GL11.glVertex2f(this.coordinates[0].x, this.coordinates[0].y);
-		GL11.glVertex2f(this.coordinates[1].x, this.coordinates[1].y);
-		GL11.glVertex2f(this.coordinates[2].x, this.coordinates[2].y);
-		GL11.glVertex2f(this.coordinates[3].x, this.coordinates[3].y);
+		GL11.glVertex2f(this.coordinates[0].x + x, this.coordinates[0].y + y);
+		GL11.glVertex2f(this.coordinates[1].x + x, this.coordinates[1].y + y);
+		GL11.glVertex2f(this.coordinates[2].x + x, this.coordinates[2].y + y);
+		GL11.glVertex2f(this.coordinates[3].x + x, this.coordinates[3].y + y);
 		GL11.glEnd();
 	}
 }
+*/

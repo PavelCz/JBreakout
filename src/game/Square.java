@@ -8,8 +8,8 @@ public class Square extends RenderObject {
 	private int length;
 
 	public Square(float x, float y, int length) {
-		this.rectangle = new Rectangle(x, y, length, length);
-		this.coordinates = new Vector2f(x, y);
+		this.rectangle = new Rectangle(length, length);
+		//this.coordinates = new Vector2f(x, y);
 		this.length = length;
 
 	}
@@ -32,7 +32,7 @@ public class Square extends RenderObject {
 	}*/
 
 	public void update() {
-		this.rectangle.setCoordinates(coordinates.getX(), this.coordinates.getY());
+		//this.rectangle.setCoordinates(coordinates.getX(), this.coordinates.getY());
 		this.rectangle.update();
 	}
 }
