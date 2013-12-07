@@ -4,16 +4,33 @@ import org.lwjgl.util.vector.Vector2f;
 
 /**
  * @author pavel.czempin
+ * 
+ */
+
+/**
+ * @author Valep
  *
+ */
+/**
+ * @author Valep
+ * 
  */
 public class MyVector2f {
 	private Vector2f vector;
 	private float angleRadians;
 	private float length;
 
+	/**
+	 * creates an 2-dimensional vector using 2 coordinates
+	 * 
+	 * @param x
+	 *            the x coordinate of the vector
+	 * @param y
+	 *            the y coordinate of the vector
+	 */
 	public MyVector2f(float x, float y) {
 		this.vector = new Vector2f(x, y);
-		this.angleRadians = calculateAngle(x, y); // atan ist tan^-1
+		this.angleRadians = calculateAngle(x, y);
 		this.length = (float) (Math.sqrt(x * x + y * y));
 
 		this.angleRadians = normalizeAngle(this.angleRadians);
@@ -38,7 +55,13 @@ public class MyVector2f {
 	public float getLength() {
 		return this.length;
 	}
-	
+
+	/**
+	 * add to the length of the vector without affecting the orientation
+	 * 
+	 * @param length
+	 *            the length that gets added
+	 */
 	public void setLength(float length) {
 		this.length = length;
 		this.updateCoordinatesByLengthAndAngle();
@@ -52,14 +75,25 @@ public class MyVector2f {
 		return this.calculateDegrees(this.angleRadians);
 	}
 
+	/**
+	 * rotates the vector without changing the length
+	 * 
+	 * @param angle
+	 *            the amount the vector is rotated by in radians
+	 */
 	public void rotateRadians(float angle) {
 		this.angleRadians += angle;
-
 		this.angleRadians = normalizeAngle(this.angleRadians);
 		this.updateCoordinatesByLengthAndAngle();
 
 	}
 
+	/**
+	 * rotates the vector without changing the length
+	 * 
+	 * @param angle
+	 *            the amount the vector is rotated by in degrees
+	 */
 	public void rotateDegrees(float angle) {
 		this.angleRadians += this.calculateRadians(angle);
 		this.angleRadians = normalizeAngle(this.angleRadians);
@@ -67,6 +101,11 @@ public class MyVector2f {
 
 	}
 
+	/**
+	 * Set the attribute angleRadians using degrees
+	 * 
+	 * @param angle
+	 */
 	public void setAngleDegrees(float angle) {
 		this.angleRadians = this.calculateRadians(angle);
 		this.angleRadians = normalizeAngle(this.angleRadians);
@@ -74,13 +113,18 @@ public class MyVector2f {
 
 	}
 
+	/**
+	 * Set the attribute angleRadians using radians
+	 * 
+	 * @param angle
+	 */
 	public void setAngleRadians(float angle) {
 		this.angleRadians = angle;
 		this.angleRadians = normalizeAngle(this.angleRadians);
 		this.updateCoordinatesByLengthAndAngle();
 
 	}
-	
+
 	/**
 	 * Updates the Coordinates using the current length and angle
 	 */
@@ -91,6 +135,7 @@ public class MyVector2f {
 
 	/**
 	 * Takes an angle in Radians and returns the Angle in Degrees
+	 * 
 	 * @param angleRadians
 	 * @return the same Angle in degrees
 	 */
@@ -98,10 +143,23 @@ public class MyVector2f {
 		return (float) (angleRadians * 57.2957795);
 	}
 
+	/**
+	 * Takes an angle in Degrees and returns the Angle in Radians
+	 * 
+	 * @param angleDegrees
+	 * @return the same Angle in radians
+	 */
 	private float calculateRadians(float angleDegrees) {
 		return (float) (angleDegrees / 57.2957795);
 	}
 
+	/**
+	 * Normalizes an angle to be between 0 and 2PI Radians
+	 * 
+	 * @param angle
+	 *            the angle
+	 * @return the angle normalized
+	 */
 	public static float normalizeAngle(float angle) {
 		if (angle > Math.PI * 2) {
 			return normalizeAngle((float) (angle - Math.PI * 2));
@@ -112,8 +170,17 @@ public class MyVector2f {
 		}
 	}
 
+	/**
+	 * Calculates the angle of an vector with the given coordinates
+	 * 
+	 * @param x
+	 *            the x coordinate of an vector
+	 * @param y
+	 *            the z coordinate of an vector
+	 * @return the angle between these coordinates
+	 */
 	public static float calculateAngle(float x, float y) {
-		float result = (float) Math.atan(y / x);
+		float result = (float) Math.atan(y / x); // atan = tan^-1
 		if (x >= 0) {
 			return result;
 		} else {
