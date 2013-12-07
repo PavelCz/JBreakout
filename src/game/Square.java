@@ -14,8 +14,8 @@ public class Square extends RenderObject {
 
 	}
 
-	public void render() {
-		this.rectangle.render();
+	public void render(float x, float y) {
+		this.rectangle.render(x, y);
 	}
 	public void setColor(float r, float g, float b) {
 		this.rectangle.setColor(r, g, b);

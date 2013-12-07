@@ -22,8 +22,8 @@ public class Rectangle extends RenderObject {
 		this.height = height;
 	}
 
-	public void render() {
-		this.quad.render();
+	public void render(float x,  float y) {
+		this.quad.render(x, y);
 	}
 	
 	public void setColor(float r, float g, float b) {

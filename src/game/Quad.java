@@ -99,7 +99,7 @@ public class Quad /*extends RenderObject*/ {
 		}
 	}*/
 
-	public void render() {
+	public void render(float x, float y) {
 
 		// set the color of the quad (R,G,B,A)
 		GL11.glColor3f(this.colorsRGB.getX(), this.colorsRGB.getY(), this.colorsRGB.getZ());

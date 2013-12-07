@@ -20,7 +20,7 @@ public abstract class Entity {
 	}
 
 	public void render() {
-		this.renderObject.render();
+		this.renderObject.render(this.coordinates.getX(), this.coordinates.getY());
 	}
 
 	public void update(int delta) {

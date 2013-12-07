@@ -7,7 +7,7 @@ public abstract class RenderObject {
 	
 	public abstract void update();
 
-	public abstract void render();
+	public abstract void render(float x, float y);
 	
 	public abstract void setColor(float r, float g, float b);
 

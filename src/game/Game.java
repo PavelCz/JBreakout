@@ -8,8 +8,6 @@ import org.lwjgl.opengl.GL11;
 public class Game {
     private long lastFrame;
     private Window gameWindow;
-    private Quad q;
-    private Rectangle r;
     private Racket racket;
     private Ball b;
 
@@ -17,8 +15,6 @@ public class Game {
 	this.gameWindow = new Window(800, 600);
 	gameWindow.start();
 
-	this.q = new Quad(100, 100, 100, 200, 200, 200, 200, 100);
-	this.r = new Rectangle(300, 300, 100, 50);
 
 	this.racket = new Racket(gameWindow);
 	this.b = new Ball(this);
@@ -58,8 +54,6 @@ public class Game {
 	// Clear the screen and depth buffer
 	GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 
-	q.render();
-	r.render();
 	racket.render();
 	b.render();
 
