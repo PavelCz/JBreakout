@@ -6,10 +6,6 @@ import org.lwjgl.util.vector.Vector2f;
  * @author pavel.czempin
  *
  */
-/**
- * @author pavel.czempin
- *
- */
 public class MyVector2f {
 	private Vector2f vector;
 	private float angleRadians;
