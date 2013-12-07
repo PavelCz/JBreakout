@@ -20,14 +20,11 @@ public abstract class Entity {
 	}
 
 	public void render() {
-		this.renderObject.render(this.coordinates.getX(), this.coordinates.getY());
+		this.renderObject.render(this.coordinates.getX(),
+				this.coordinates.getY());
 	}
 
-	public void update(int delta) {
-		//this.renderObject.setCoordinates(this.coordinates.getX(),
-		//		this.coordinates.getY());
-		this.renderObject.update();
-	}
+	//public abstract void update(int delta);
 
 	public float getX() {
 		return this.coordinates.getX();

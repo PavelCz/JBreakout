@@ -67,7 +67,6 @@ public class Game {
 		if (Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
 			racket.moveHorizontally(delta, 1);
 		}
-		racket.update(delta);
 		b.update(delta);
 	}
 

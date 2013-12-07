@@ -29,8 +29,6 @@ public class Ball extends Entity {
 				* delta);
 		this.wallCollision(previousX, previousY);
 		this.racketCollision(previousX);
-
-		super.update(delta);
 	}
 
 	private void racketCollision(float previousX) {
