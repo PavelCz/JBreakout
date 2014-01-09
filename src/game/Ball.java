@@ -12,7 +12,7 @@ public class Ball extends Entity {
 		super(game.getGameWindow());
 		this.game = game;
 
-		this.coordinates = new Vector2f(3, 3);
+		this.coordinates = new MyVector2f(3, 3);
 		this.length = 10;
 
 		this.renderObject = new Square(this.coordinates.getX(),

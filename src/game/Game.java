@@ -10,6 +10,7 @@ public class Game {
 	private Window gameWindow;
 	private Racket racket;
 	private Ball b;
+	private Block[] blocks;
 
 	public Game() {
 		this.gameWindow = new Window(800, 600);
@@ -17,6 +18,10 @@ public class Game {
 
 		this.racket = new Racket(gameWindow);
 		this.b = new Ball(this);
+		this.blocks = new Block[3];
+		this.blocks[0] = new Block(gameWindow, 100, 100);
+		this.blocks[1] = new Block(gameWindow, 400, 500);
+		this.blocks[2] = new Block(gameWindow, 300, 100);
 
 	}
 
@@ -55,6 +60,10 @@ public class Game {
 
 		racket.render();
 		b.render();
+		for (Block block : this.blocks) {
+			block.render();
+			
+		}
 
 		Display.update();
 

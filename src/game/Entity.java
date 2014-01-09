@@ -5,7 +5,7 @@ import org.lwjgl.util.vector.Vector2f;
 public abstract class Entity {
 	protected RenderObject renderObject;
 	protected Window gameWindow;
-	protected Vector2f coordinates;
+	protected MyVector2f coordinates;
 
 	public Entity(Window gameWindow) {
 		this.gameWindow = gameWindow;

@@ -7,11 +7,11 @@ import org.lwjgl.util.vector.Vector2f;
  * 
  */
 public class RectangleCollision extends CollisionMask {
-	private Vector2f coordinates;
+	private MyVector2f coordinates;
 	private float width;
 	private float height;
 
-	public RectangleCollision(Vector2f coordinates, float width, float height) {
+	public RectangleCollision(MyVector2f coordinates, float width, float height) {
 		super();
 		this.coordinates = coordinates;
 		this.width = width;
@@ -67,7 +67,7 @@ public class RectangleCollision extends CollisionMask {
 	 * }
 	 */
 
-	public Vector2f getCoordinates() {
+	public MyVector2f getCoordinates() {
 		return this.coordinates;
 	}
 
