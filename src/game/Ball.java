@@ -82,5 +82,16 @@ public class Ball extends Entity {
 			this.velocity.setY(this.velocity.getY() * (-1));
 		}
 	}
+	
+	private void ballCollision(float previousX, float previousY) {
+		int counter = 0;
+		for (Block block : game.getBlocks()) {
+			++counter;
+			if(this.rc.collidesWith(block.getCollisionMask())) {
+				System.out.println("collision with " + counter);
+			}
+		}
+		
+	}
 
 }

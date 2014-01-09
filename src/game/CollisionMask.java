@@ -1,5 +1,5 @@
 package game;
 
 public abstract class CollisionMask {
-	public abstract boolean collidesWith(CollisionMask c);
+	//public abstract boolean collidesWith(CollisionMask c);
 }

@@ -18,12 +18,17 @@ public class RectangleCollision extends CollisionMask {
 		this.height = height;
 	}
 
+	/*
 	@Override
 	public boolean collidesWith(CollisionMask c) {
+		if (c.getClass().equals(RectangleCollision.class)) {
+			return this.collidesWith((RectangleCollision) c);
+		} else {
 
-		return false;
+			return false;
+		}
 
-	}
+	}*/
 
 	/**
 	 * returns if this collides with another RectangleCollisionMask. Only works
@@ -32,17 +37,37 @@ public class RectangleCollision extends CollisionMask {
 	 * @param rc
 	 * @return
 	 */
-	
+
 	public boolean collidesWith(RectangleCollision rc) {
+		MyVector2f[] coordinates = new MyVector2f[4];
+		coordinates[0] = this.coordinates;
+		coordinates[1] = new MyVector2f(this.coordinates.getX(),
+				this.coordinates.getY() + this.height);
+		coordinates[2] = new MyVector2f(this.coordinates.getX() + this.width,
+				this.coordinates.getY());
+		coordinates[3] = new MyVector2f(this.coordinates.getX() + this.width,
+				this.coordinates.getY() + this.height);
+		for (MyVector2f coordinate : coordinates) {
+			if (MathmaticalMethods.isPointInsideRectangle(coordinate.getX(),
+					coordinate.getY(), rc.getCoordinates().getX(), rc
+							.getCoordinates().getY(), rc.getWidth(), rc
+							.getHeight())) {
+				return true;
+			}
+
+		}
 		return false;
+
 	}
-	/*public boolean collidesWith(RectangleCollision rc) {
-		if (this.coordinates.getX() + this.width > rc.getCoordinates().getX() && this.coordinates.getY() +this.height > rc.coordinates.getY()) {
-			
-			this.coordinates.setX(this.gameWindow.getWidth() - this.length);
-			this.velocity.setX(this.velocity.getX() * (-1));
-		} else if(this.)
-	}*/
+
+	/*
+	 * public boolean collidesWith(RectangleCollision rc) { if
+	 * (this.coordinates.getX() + this.width > rc.getCoordinates().getX() &&
+	 * this.coordinates.getY() +this.height > rc.coordinates.getY()) {
+	 * 
+	 * this.coordinates.setX(this.gameWindow.getWidth() - this.length);
+	 * this.velocity.setX(this.velocity.getX() * (-1)); } else if(this.) }
+	 */
 
 	/*
 	 * public boolean collidesWith(RectangleCollision rc) {
@@ -69,6 +94,14 @@ public class RectangleCollision extends CollisionMask {
 
 	public MyVector2f getCoordinates() {
 		return this.coordinates;
+	}
+
+	public float getWidth() {
+		return this.width;
+	}
+
+	public float getHeight() {
+		return this.height;
 	}
 
 }

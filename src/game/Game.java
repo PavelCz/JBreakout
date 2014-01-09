@@ -104,4 +104,9 @@ public class Game {
 		return this.racket;
 	}
 
+	public Block[] getBlocks() {
+		return blocks;
+	}
+	
+
 }
