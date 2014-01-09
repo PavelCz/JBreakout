@@ -6,6 +6,7 @@ public class Ball extends Entity {
 	private Game game;
 	private int length;
 	private MyVector2f velocity;
+	private RectangleCollision rc;
 
 	public Ball(Game game) {
 		super(game.getGameWindow());
@@ -18,6 +19,8 @@ public class Ball extends Entity {
 				this.coordinates.getY(), this.length);
 
 		this.velocity = new MyVector2f(0.1f, 0.5f);
+		
+		this.rc = new RectangleCollision(this.coordinates, this.length, this.length);
 	}
 
 	public void update(int delta) {

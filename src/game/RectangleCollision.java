@@ -11,6 +11,13 @@ public class RectangleCollision extends CollisionMask {
 	private float width;
 	private float height;
 
+	public RectangleCollision(Vector2f coordinates, float width, float height) {
+		super();
+		this.coordinates = coordinates;
+		this.width = width;
+		this.height = height;
+	}
+
 	@Override
 	public boolean collidesWith(CollisionMask c) {
 
