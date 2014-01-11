@@ -37,12 +37,14 @@ public class Ball extends Entity {
 	}
 
 	private void racketCollision(float previousX) {
-		Racket racket = this.game.getRacket();
+		for (Racket racket : game.getRackets()) {
+			
+		
 		if (this.coordinates.getX() + this.length >= racket.getX()
 				&& this.coordinates.getX() <= racket.getX() + racket.getWidth()) {
 			if (this.coordinates.getY() + this.length >= racket.getY()) {
-				float racketMiddle = this.game.getRacket().getX()
-						+ this.game.getRacket().getWidth() / 2;
+				float racketMiddle = racket.getX()
+						+ racket.getWidth() / 2;
 				float distanceToRacketMiddle = racketMiddle - this.getX();
 
 				this.coordinates.setX(previousX);
@@ -55,6 +57,7 @@ public class Ball extends Entity {
 				// this.velocity.setX(this.velocity.getX() +
 				// distanceToRacketMiddle/500);
 
+				}
 			}
 		}
 	}

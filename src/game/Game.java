@@ -8,21 +8,32 @@ import org.lwjgl.opengl.GL11;
 public class Game {
 	private long lastFrame;
 	private Window gameWindow;
-	private Racket racket1, racket2;
+	private Racket[] rackets;
+	private Player player1, player2;
+	private Controls1D controls1, controls2;
 	private Ball b;
 	private Block[] blocks;
 
 	public Game() {
 		this.gameWindow = new Window(800, 600);
 		gameWindow.start();
+		this.controls1 = new Controls1D(Keyboard.KEY_LEFT, Keyboard.KEY_RIGHT);
+		this.controls2 = new Controls1D(Keyboard.KEY_A, Keyboard.KEY_D);
 
-		this.racket1 = new Racket(gameWindow);
-		this.racket2 = new Racket(gameWindow);
-		this.b = new Ball(this, 3f,3f, 10, new Square(10), new MyVector2f(0.1f, 0.5f));
-		//this.blocks = new Block[3];
-		//this.blocks[0] = new Block(gameWindow, 100, 100);
-		//this.blocks[1] = new Block(gameWindow, 400, 500);
-		//this.blocks[2] = new Block(gameWindow, 300, 100);
+		this.rackets = new Racket[2];
+
+		this.rackets[0] = new Racket(gameWindow);
+		this.rackets[1] = new Racket(gameWindow);
+
+		this.player1 = new Player(rackets[0], controls1, 0, -1);
+		this.player2 = new Player(rackets[0], controls2, 0, -1);
+
+		this.b = new Ball(this, 3f, 3f, 10, new Square(10), new MyVector2f(
+				0.1f, 0.5f));
+		// this.blocks = new Block[3];
+		// this.blocks[0] = new Block(gameWindow, 100, 100);
+		// this.blocks[1] = new Block(gameWindow, 400, 500);
+		// this.blocks[2] = new Block(gameWindow, 300, 100);
 
 	}
 
@@ -59,27 +70,23 @@ public class Game {
 		// Clear the screen and depth buffer
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 
-		racket.render();
+		for (Racket racket : this.rackets) {
+			racket.render();
+		}
 		b.render();
-		
+
 		/*
-		for (Block block : this.blocks) {
-			block.render();
-			
-		}*/
+		 * for (Block block : this.blocks) { block.render();
+		 * 
+		 * }
+		 */
 
 		Display.update();
 
 	}
 
 	public void update(int delta) {
-		if (Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
-			racket.moveHorizontally(delta, -1);
-		}
-		if (Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
-			racket.moveHorizontally(delta, 1);
-		}
-		
+
 		b.update(delta);
 	}
 
@@ -104,13 +111,16 @@ public class Game {
 		return this.gameWindow;
 	}
 
-	public Racket getRacket() {
-		return this.racket;
+	public Racket getRacket(int number) {
+		return this.rackets[number];
+	}
+	
+	public Racket[] getRackets() {
+		return this.rackets;
 	}
 
 	public Block[] getBlocks() {
 		return blocks;
 	}
-	
 
 }
