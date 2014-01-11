@@ -17,11 +17,11 @@ public class Game {
 		gameWindow.start();
 
 		this.racket = new Racket(gameWindow);
-		this.b = new Ball(this);
-		this.blocks = new Block[3];
-		this.blocks[0] = new Block(gameWindow, 100, 100);
-		this.blocks[1] = new Block(gameWindow, 400, 500);
-		this.blocks[2] = new Block(gameWindow, 300, 100);
+		this.b = new Ball(this, 3f,3f, 10, new Square(10), new MyVector2f(0.1f, 0.5f));
+		//this.blocks = new Block[3];
+		//this.blocks[0] = new Block(gameWindow, 100, 100);
+		//this.blocks[1] = new Block(gameWindow, 400, 500);
+		//this.blocks[2] = new Block(gameWindow, 300, 100);
 
 	}
 

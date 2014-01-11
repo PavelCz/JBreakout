@@ -8,17 +8,16 @@ public class Ball extends Entity {
 	private MyVector2f velocity;
 	private RectangleCollision rc;
 
-	public Ball(Game game) {
+	public Ball(Game game, float x, float y, int length, RenderObject renderObject, MyVector2f startVelocity) {
 		super(game.getGameWindow());
 		this.game = game;
 
-		this.coordinates = new MyVector2f(3, 3);
-		this.length = 10;
+		this.coordinates = new MyVector2f(x, y);
+		this.length = length;
 
-		this.renderObject = new Square(this.coordinates.getX(),
-				this.coordinates.getY(), this.length);
+		this.renderObject = renderObject;
 
-		this.velocity = new MyVector2f(0.1f, 0.5f);
+		this.velocity = startVelocity;
 		
 		this.rc = new RectangleCollision(this.coordinates, this.length, this.length);
 	}

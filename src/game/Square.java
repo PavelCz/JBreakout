@@ -7,7 +7,7 @@ public class Square extends RenderObject {
 
 	private int length;
 
-	public Square(float x, float y, int length) {
+	public Square(int length) {
 		this.rectangle = new Rectangle(length, length);
 		this.length = length;
 

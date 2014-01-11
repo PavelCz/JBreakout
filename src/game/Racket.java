@@ -2,7 +2,7 @@ package game;
 
 import org.lwjgl.util.vector.Vector2f;
 
-public class Racket extends Entity {
+public class Racket extends Entity implements Controllable{
 
 	private int width;
 	private int height;
