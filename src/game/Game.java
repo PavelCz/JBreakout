@@ -21,12 +21,17 @@ public class Game {
 		this.controls2 = new Controls1D(Keyboard.KEY_A, Keyboard.KEY_D);
 
 		this.rackets = new Racket[2];
+		int racketHeight = 25;
+		int racketWidth = 100;
 
-		this.rackets[0] = new Racket(gameWindow);
-		this.rackets[1] = new Racket(gameWindow);
+		this.rackets[0] = new Racket(gameWindow, this.gameWindow.getWidth()
+				- racketWidth / 2, 50, racketWidth, racketHeight);
+		this.rackets[1] = new Racket(gameWindow, this.gameWindow.getWidth()
+				- racketWidth / 2, this.gameWindow.getHeight() - racketHeight
+				- 50, racketWidth, racketHeight);
 
 		this.player1 = new Player(rackets[0], controls1, 0, -1);
-		this.player2 = new Player(rackets[0], controls2, 0, -1);
+		this.player2 = new Player(rackets[1], controls2, 0, -1);
 
 		this.b = new Ball(this, 3f, 3f, 10, new Square(10), new MyVector2f(
 				0.1f, 0.5f));
@@ -86,8 +91,11 @@ public class Game {
 	}
 
 	public void update(int delta) {
+		player1.control(delta);
+		player2.control(delta);
 
 		b.update(delta);
+		System.out.println(b.getVelocity().getAngleDegrees());
 	}
 
 	public int getDelta() {
@@ -114,7 +122,7 @@ public class Game {
 	public Racket getRacket(int number) {
 		return this.rackets[number];
 	}
-	
+
 	public Racket[] getRackets() {
 		return this.rackets;
 	}

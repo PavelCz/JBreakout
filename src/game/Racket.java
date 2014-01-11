@@ -2,22 +2,21 @@ package game;
 
 import org.lwjgl.util.vector.Vector2f;
 
-public class Racket extends Entity implements Controllable{
+public class Racket extends Entity implements Controllable {
 
 	private int width;
 	private int height;
 
 	private float speed;
 
-	public Racket(Window gameWindow) {
+	public Racket(Window gameWindow, float startingX, float startingY,
+			int width, int height) {
 		super(gameWindow);
 
 		this.speed = 0.75f;
-		this.width = 100;
-		this.height = 25;
-		this.coordinates = new MyVector2f(
-				(this.gameWindow.getWidth() - this.width) / 2,
-				this.gameWindow.getHeight() - this.height - 50);
+		this.width = width;
+		this.height = height;
+		this.coordinates = new MyVector2f(startingX, startingY);
 
 		this.renderObject = new Rectangle(width, height);
 		this.renderObject.setColor(0f, 0f, 1f);
@@ -36,6 +35,10 @@ public class Racket extends Entity implements Controllable{
 
 	public int getWidth() {
 		return this.width;
+	}
+
+	public float getHeight() {
+		return this.height;
 	}
 
 }
