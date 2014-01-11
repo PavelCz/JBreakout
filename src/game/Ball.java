@@ -8,7 +8,8 @@ public class Ball extends Entity {
 	private MyVector2f velocity;
 	private RectangleCollision rc;
 
-	public Ball(Game game, float x, float y, int length, RenderObject renderObject, MyVector2f startVelocity) {
+	public Ball(Game game, float x, float y, int length,
+			RenderObject renderObject, MyVector2f startVelocity) {
 		super(game.getGameWindow());
 		this.game = game;
 
@@ -18,8 +19,9 @@ public class Ball extends Entity {
 		this.renderObject = renderObject;
 
 		this.velocity = startVelocity;
-		
-		this.rc = new RectangleCollision(this.coordinates, this.length, this.length);
+
+		this.rc = new RectangleCollision(this.coordinates, this.length,
+				this.length);
 	}
 
 	public void update(int delta) {
@@ -45,10 +47,13 @@ public class Ball extends Entity {
 
 				this.coordinates.setX(previousX);
 				this.coordinates.setY(racket.getY() - this.length);
-				//this.velocity.setAngleRadians((float) (distanceToRacketMiddle
-				//		* 0.02 * 0.25* Math.PI + 0.5 * Math.PI));
-				this.velocity.setAngleDegrees((distanceToRacketMiddle/50 * 45 + 90) * -1);
-				//this.velocity.setX(this.velocity.getX() + distanceToRacketMiddle/500);
+				// this.velocity.setAngleRadians((float) (distanceToRacketMiddle
+				// * 0.02 * 0.25* Math.PI + 0.5 * Math.PI));
+				this.velocity
+						.setAngleDegrees((distanceToRacketMiddle / 50 * 45 + 90)
+								* -1);
+				// this.velocity.setX(this.velocity.getX() +
+				// distanceToRacketMiddle/500);
 
 			}
 		}
@@ -82,16 +87,18 @@ public class Ball extends Entity {
 			this.velocity.setY(this.velocity.getY() * (-1));
 		}
 	}
-	
+
 	private void ballCollision(float previousX, float previousY) {
 		int counter = 0;
-		for (Block block : game.getBlocks()) {
-			++counter;
-			if(this.rc.collidesWith(block.getCollisionMask())) {
-				System.out.println("collision with " + counter);
+		if (game.getBlocks() != null) {
+			for (Block block : game.getBlocks()) {
+				++counter;
+				if (this.rc.collidesWith(block.getCollisionMask())) {
+					System.out.println("collision with " + counter);
+				}
 			}
 		}
-		
+
 	}
 
 }

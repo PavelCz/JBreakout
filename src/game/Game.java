@@ -60,10 +60,12 @@ public class Game {
 
 		racket.render();
 		b.render();
+		
+		/*
 		for (Block block : this.blocks) {
 			block.render();
 			
-		}
+		}*/
 
 		Display.update();
 
