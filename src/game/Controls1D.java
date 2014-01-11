@@ -9,4 +9,13 @@ public class Controls1D extends Controls {
 		this.moveLeftKey = moveLeftKey;
 		this.moveRightKey = moveRightKey;
 	}
+	
+	public int getMoveLeft() {
+		return moveLeftKey;
+	}
+	
+	public int getMoveRight() {
+		return moveRightKey;
+	}
+	
 }

@@ -8,7 +8,7 @@ import org.lwjgl.opengl.GL11;
 public class Game {
 	private long lastFrame;
 	private Window gameWindow;
-	private Racket racket;
+	private Racket racket1, racket2;
 	private Ball b;
 	private Block[] blocks;
 
@@ -16,7 +16,8 @@ public class Game {
 		this.gameWindow = new Window(800, 600);
 		gameWindow.start();
 
-		this.racket = new Racket(gameWindow);
+		this.racket1 = new Racket(gameWindow);
+		this.racket2 = new Racket(gameWindow);
 		this.b = new Ball(this, 3f,3f, 10, new Square(10), new MyVector2f(0.1f, 0.5f));
 		//this.blocks = new Block[3];
 		//this.blocks[0] = new Block(gameWindow, 100, 100);
