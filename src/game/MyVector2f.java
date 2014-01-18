@@ -184,4 +184,8 @@ public class MyVector2f {
 			return (float) (result - Math.PI);
 		}
 	}
+	
+	public MyVector2f clone() {
+		return new MyVector2f(this.vector.getX(), this.vector.getY());
+	}
 }
