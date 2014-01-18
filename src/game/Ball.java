@@ -29,7 +29,7 @@ public class Ball extends Entity {
 		this.coordinates.setY(this.coordinates.getY() + this.velocity.getY() * delta);
 		this.wallCollision(previousX, previousY);
 		this.racketCollision(previousX, previousY);
-		this.ballCollision(previousX, previousY);
+		//this.ballCollision(previousX, previousY);
 	}
 
 	private void racketCollision(float previousX, float previousY) {
@@ -126,18 +126,18 @@ public class Ball extends Entity {
 		}
 	}
 
-	private void ballCollision(float previousX, float previousY) {
-		int counter = 0;
-		if (game.getBlocks() != null) {
-			for (Block block : game.getBlocks()) {
-				++counter;
-				if (this.rc.collidesWith(block.getCollisionMask())) {
-					System.out.println("collision with " + counter);
-				}
-			}
-		}
-
-	}
+//	private void ballCollision(float previousX, float previousY) {
+//		int counter = 0;
+//		if (game.getBlocks() != null) {
+//			for (Block block : game.getBlocks()) {
+//				++counter;
+//				if (this.rc.collidesWith(block.getCollisionMask())) {
+//					System.out.println("collision with " + counter);
+//				}
+//			}
+//		}
+//
+//	}
 
 	public MyVector2f getVelocity() {
 		return velocity;

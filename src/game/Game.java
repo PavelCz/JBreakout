@@ -16,9 +16,12 @@ public class Game {
 	private Player player1, player2;
 	private Controls1D controls1, controls2;
 	private Ball b;
-	private Block[] blocks;
+	private Pixel p;
+	
+	//private Block[] blocks;
 
 	public Game() {
+		this.p = new Pixel();
 		this.debug = false;
 		this.gameWindow = new Window(800, 600);
 		gameWindow.start();
@@ -77,11 +80,14 @@ public class Game {
 
 		// Clear the screen and depth buffer
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
+		
+		
 
 		for (Racket racket : this.rackets) {
 			racket.render();
 		}
 		b.render();
+		p.render(2, 2);
 
 		/*
 		 * for (Block block : this.blocks) { block.render();
@@ -155,8 +161,8 @@ public class Game {
 		return this.rackets;
 	}
 
-	public Block[] getBlocks() {
-		return blocks;
-	}
+//	public Block[] getBlocks() {
+//		return blocks;
+//	}
 
 }
