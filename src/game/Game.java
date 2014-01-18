@@ -2,10 +2,12 @@ package game;
 
 import org.lwjgl.Sys;
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 
 public class Game {
+	private boolean debug;
 	private long lastFrame;
 	private Window gameWindow;
 	private Racket[] rackets;
@@ -15,6 +17,7 @@ public class Game {
 	private Block[] blocks;
 
 	public Game() {
+		this.debug = false;
 		this.gameWindow = new Window(800, 600);
 		gameWindow.start();
 		this.controls1 = new Controls1D(Keyboard.KEY_LEFT, Keyboard.KEY_RIGHT);
@@ -24,17 +27,14 @@ public class Game {
 		int racketHeight = 25;
 		int racketWidth = 100;
 
-		this.rackets[0] = new Racket(gameWindow, this.gameWindow.getWidth()
-				- racketWidth / 2, 50, racketWidth, racketHeight);
-		this.rackets[1] = new Racket(gameWindow, this.gameWindow.getWidth()
-				- racketWidth / 2, this.gameWindow.getHeight() - racketHeight
-				- 50, racketWidth, racketHeight);
+		this.rackets[0] = new Racket(gameWindow, this.gameWindow.getWidth() - racketWidth / 2, 50, racketWidth, racketHeight);
+		this.rackets[1] = new Racket(gameWindow, this.gameWindow.getWidth() - racketWidth / 2, this.gameWindow.getHeight()
+				- racketHeight - 50, racketWidth, racketHeight);
 
 		this.player1 = new Player(rackets[0], controls1, 0, -1);
 		this.player2 = new Player(rackets[1], controls2, 0, -1);
 
-		this.b = new Ball(this, 3f, 3f, 10, new Square(10), new MyVector2f(
-				0.1f, 0.5f));
+		this.b = new Ball(this, 3f, 3f, 50, new Square(50), new MyVector2f(0.1f, 0.5f));
 		// this.blocks = new Block[3];
 		// this.blocks[0] = new Block(gameWindow, 100, 100);
 		// this.blocks[1] = new Block(gameWindow, 400, 500);
@@ -91,10 +91,23 @@ public class Game {
 	}
 
 	public void update(int delta) {
+		while (Keyboard.next()) {
+			if (Keyboard.getEventKey() == Keyboard.KEY_P) {
+				if (Keyboard.getEventKeyState()) {
+					this.debug = !this.debug;
+					System.out.println(this.debug);
+				}
+			}
+		}
 		player1.control(delta);
 		player2.control(delta);
 
 		b.update(delta);
+		
+		if(this.debug) {
+			b.setX(Mouse.getX());
+			b.setY(this.gameWindow.getHeight() - Mouse.getY());
+		}
 	}
 
 	public int getDelta() {

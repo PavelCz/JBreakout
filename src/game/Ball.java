@@ -113,5 +113,13 @@ public class Ball extends Entity {
 	public MyVector2f getVelocity() {
 		return velocity;
 	}
+	
+	public void setX(float x) {
+		this.coordinates.setX(x);
+	}
+	
+	public void setY(float y) {
+		this.coordinates.setY(y);
+	}
 
 }
