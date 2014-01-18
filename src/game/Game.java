@@ -7,6 +7,8 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 
 public class Game {
+	private int fps;
+	private long lastFPS;
 	private boolean debug;
 	private long lastFrame;
 	private Window gameWindow;
@@ -56,7 +58,7 @@ public class Game {
 	}
 
 	public void start() {
-
+		this.lastFPS = getTime();
 		while (!Display.isCloseRequested()) {
 			int delta = this.getDelta();
 
@@ -109,6 +111,8 @@ public class Game {
 			b.setX(Mouse.getX());
 			b.setY(this.gameWindow.getHeight() - Mouse.getY());
 		}
+		
+		this.updateFPS();
 	}
 
 	public int getDelta() {
@@ -128,6 +132,17 @@ public class Game {
 		return (Sys.getTime() * 1000) / Sys.getTimerResolution();
 	}
 
+	/**
+	 * Calculate the FPS and set it in the title bar
+	 */
+	public void updateFPS() {
+		if (getTime() - lastFPS > 1000) {
+			Display.setTitle("FPS: " + fps);
+			fps = 0;
+			lastFPS += 1000;
+		}
+		fps++;
+	}
 	public Window getGameWindow() {
 		return this.gameWindow;
 	}
