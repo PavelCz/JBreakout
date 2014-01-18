@@ -8,8 +8,7 @@ public class Ball extends Entity {
 	private MyVector2f velocity;
 	private RectangleCollision rc;
 
-	public Ball(Game game, float x, float y, int length,
-			RenderObject renderObject, MyVector2f startVelocity) {
+	public Ball(Game game, float x, float y, int length, RenderObject renderObject, MyVector2f startVelocity) {
 		super(game.getGameWindow());
 		this.game = game;
 
@@ -20,17 +19,14 @@ public class Ball extends Entity {
 
 		this.velocity = startVelocity;
 
-		this.rc = new RectangleCollision(this.coordinates, this.length,
-				this.length);
+		this.rc = new RectangleCollision(this.coordinates, this.length, this.length);
 	}
 
 	public void update(int delta) {
 		float previousX = this.getX();
 		float previousY = this.getY();
-		this.coordinates.setX(this.coordinates.getX() + this.velocity.getX()
-				* delta);
-		this.coordinates.setY(this.coordinates.getY() + this.velocity.getY()
-				* delta);
+		this.coordinates.setX(this.coordinates.getX() + this.velocity.getX() * delta);
+		this.coordinates.setY(this.coordinates.getY() + this.velocity.getY() * delta);
 		this.wallCollision(previousX, previousY);
 		this.racketCollision(previousX, previousY);
 		this.ballCollision(previousX, previousY);
@@ -39,29 +35,20 @@ public class Ball extends Entity {
 	private void racketCollision(float previousX, float previousY) {
 		for (Racket racket : game.getRackets()) {
 
-			if (this.coordinates.getX() + this.length > racket.getX()
-					&& this.coordinates.getX() < racket.getX()
-							+ racket.getWidth()) {
+			if (this.coordinates.getX() + this.length > racket.getX() && this.coordinates.getX() < racket.getX() + racket.getWidth()) {
 				if (this.coordinates.getY() + this.length > racket.getY()
-						&& this.coordinates.getY() < racket.getY()
-								+ racket.getHeight()) {
+						&& this.coordinates.getY() < racket.getY() + racket.getHeight()) {
 					float racketMiddle = racket.getX() + racket.getWidth() / 2;
 					float distanceToRacketMiddle = racketMiddle - this.getX();
 
 					this.coordinates.setX(previousX);
-					if (this.velocity.getAngleDegrees() > 0
-							&& this.velocity.getAngleDegrees() < 180) { // lower
-																		// racket
-						this.velocity
-								.setAngleDegrees((distanceToRacketMiddle / 50 * 45 + 270));
+					if (this.velocity.getAngleDegrees() > 0 && this.velocity.getAngleDegrees() < 180) { // lower
+																										// racket
+						this.velocity.setAngleDegrees((270 - distanceToRacketMiddle / 50 * 45 ));
 						this.coordinates.setY(racket.getY() - this.length);
-						System.out.println(1);
 					} else { // upper racket
-						this.velocity
-								.setAngleDegrees((distanceToRacketMiddle / 50 * 45 + 90));
-						this.coordinates.setY(racket.getY()
-								+ racket.getHeight());
-						System.out.println(2);
+						this.velocity.setAngleDegrees((distanceToRacketMiddle / 50 * 45 + 90));
+						this.coordinates.setY(racket.getY() + racket.getHeight());
 
 					}
 					/*

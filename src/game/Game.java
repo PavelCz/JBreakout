@@ -95,7 +95,6 @@ public class Game {
 		player2.control(delta);
 
 		b.update(delta);
-		System.out.println(b.getVelocity().getAngleDegrees());
 	}
 
 	public int getDelta() {
