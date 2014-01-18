@@ -16,12 +16,10 @@ public class Game {
 	private Player player1, player2;
 	private Controls1D controls1, controls2;
 	private Ball b;
-	private Pixel p;
 	
 	//private Block[] blocks;
 
 	public Game() {
-		this.p = new Pixel();
 		this.debug = false;
 		this.gameWindow = new Window(800, 600);
 		gameWindow.start();
@@ -87,7 +85,6 @@ public class Game {
 			racket.render();
 		}
 		b.render();
-		p.render(2, 2);
 
 		/*
 		 * for (Block block : this.blocks) { block.render();
