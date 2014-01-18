@@ -34,7 +34,8 @@ public class Game {
 		this.player1 = new Player(rackets[0], controls1, 0, -1);
 		this.player2 = new Player(rackets[1], controls2, 0, -1);
 
-		this.b = new Ball(this, 3f, 3f, 50, new Square(50), new MyVector2f(0.1f, 0.5f));
+		int ballDiameter = 10;
+		this.b = new Ball(this, 3f, 3f, ballDiameter, new Square(ballDiameter), new MyVector2f(0.1f, 0.5f));
 		// this.blocks = new Block[3];
 		// this.blocks[0] = new Block(gameWindow, 100, 100);
 		// this.blocks[1] = new Block(gameWindow, 400, 500);
@@ -103,8 +104,8 @@ public class Game {
 		player2.control(delta);
 
 		b.update(delta);
-		
-		if(this.debug) {
+
+		if (this.debug) {
 			b.setX(Mouse.getX());
 			b.setY(this.gameWindow.getHeight() - Mouse.getY());
 		}

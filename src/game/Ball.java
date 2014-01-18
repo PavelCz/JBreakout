@@ -34,19 +34,33 @@ public class Ball extends Entity {
 
 	private void racketCollision(float previousX, float previousY) {
 		for (Racket racket : game.getRackets()) {
+			float racketMiddle = racket.getX() + racket.getWidth() / 2;
+			float distanceToRacketMiddle = racketMiddle - this.getX();
 			if (this.collidesWithRacket(racket)) {
-				float racketMiddle = racket.getX() + racket.getWidth() / 2;
-				float distanceToRacketMiddle = racketMiddle - this.getX();
-
-				this.coordinates.setX(previousX);
-				if (this.velocity.getAngleDegrees() > 0 && this.velocity.getAngleDegrees() < 180) { // lower
-																									// racket
+				MyVector2f newVelocity = this.velocity.clone();
+				newVelocity.rotateDegrees(180);
+				newVelocity.setLength(1);
+				while (this.collidesWithRacket(racket)) {
+					this.coordinates.setX(this.coordinates.getX() + newVelocity.getX());
+					this.coordinates.setY(this.coordinates.getY() + newVelocity.getY());
+				}
+				if (this.coordinates.getX() + this.length < racket.getX()) { // left
+					this.velocity.setX(this.velocity.getX() * -1);
+				} else if (this.coordinates.getX() > racket.getX() + racket.getWidth()) { // right
+					this.velocity.setX(this.velocity.getX() * -1);
+				} else if (this.coordinates.getY() + this.length < racket.getY()) { // above
 					this.velocity.setAngleDegrees((270 - distanceToRacketMiddle / 50 * 45));
 					this.coordinates.setY(racket.getY() - this.length);
-				} else { // upper racket
+				} else { // below
 					this.velocity.setAngleDegrees((distanceToRacketMiddle / 50 * 45 + 90));
 					this.coordinates.setY(racket.getY() + racket.getHeight());
 				}
+
+				/*
+				 * if (this.velocity.getAngleDegrees() > 0 &&
+				 * this.velocity.getAngleDegrees() < 180) { // lower // racket }
+				 * else { // upper racket }
+				 */
 			}
 		}
 	}
