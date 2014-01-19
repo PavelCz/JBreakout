@@ -16,8 +16,8 @@ public class Game {
 	private Player player1, player2;
 	private Controls1D controls1, controls2;
 	private Ball b;
-	
-	//private Block[] blocks;
+
+	// private Block[] blocks;
 
 	public Game() {
 		this.debug = false;
@@ -30,15 +30,18 @@ public class Game {
 		int racketHeight = 25;
 		int racketWidth = 100;
 
-		this.rackets[0] = new Racket(gameWindow, this.gameWindow.getWidth() - racketWidth / 2, 50, racketWidth, racketHeight);
-		this.rackets[1] = new Racket(gameWindow, this.gameWindow.getWidth() - racketWidth / 2, this.gameWindow.getHeight()
-				- racketHeight - 50, racketWidth, racketHeight);
+		this.rackets[0] = new Racket(gameWindow, this.gameWindow.getWidth() / 2
+				- racketWidth / 2, 50, racketWidth, racketHeight);
+		this.rackets[1] = new Racket(gameWindow, this.gameWindow.getWidth() / 2
+				- racketWidth / 2, this.gameWindow.getHeight() - racketHeight
+				- 50, racketWidth, racketHeight);
 
 		this.player1 = new Player(rackets[0], controls1, 0, -1);
 		this.player2 = new Player(rackets[1], controls2, 0, -1);
 
 		int ballDiameter = 10;
-		this.b = new Ball(this, 3f, 3f, ballDiameter, new Square(ballDiameter), new MyVector2f(0.1f, 0.5f));
+		this.b = new Ball(this, 3f, 3f, ballDiameter, new Square(ballDiameter),
+				new MyVector2f(0.1f, 0.5f));
 		// this.blocks = new Block[3];
 		// this.blocks[0] = new Block(gameWindow, 100, 100);
 		// this.blocks[1] = new Block(gameWindow, 400, 500);
@@ -78,8 +81,6 @@ public class Game {
 
 		// Clear the screen and depth buffer
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
-		
-		
 
 		for (Racket racket : this.rackets) {
 			racket.render();
@@ -114,7 +115,7 @@ public class Game {
 			b.setX(Mouse.getX());
 			b.setY(this.gameWindow.getHeight() - Mouse.getY());
 		}
-		
+
 		this.updateFPS();
 	}
 
@@ -146,6 +147,7 @@ public class Game {
 		}
 		fps++;
 	}
+
 	public Window getGameWindow() {
 		return this.gameWindow;
 	}
@@ -158,8 +160,8 @@ public class Game {
 		return this.rackets;
 	}
 
-//	public Block[] getBlocks() {
-//		return blocks;
-//	}
+	// public Block[] getBlocks() {
+	// return blocks;
+	// }
 
 }
