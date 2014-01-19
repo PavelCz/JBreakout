@@ -13,7 +13,7 @@ public class Game {
 	private long lastFrame;
 	private Window gameWindow;
 	private Racket[] rackets;
-	private Player player1, player2;
+	private Player[] players;
 	private Controls1D controls1, controls2;
 	private Ball b;
 
@@ -37,8 +37,8 @@ public class Game {
 				- racketWidth / 2, this.gameWindow.getHeight() - racketHeight
 				- 50, racketWidth, racketHeight);
 
-		this.player1 = new Player(rackets[0], controls1, 0, -1);
-		this.player2 = new Player(rackets[1], controls2, 0, -1);
+		this.players[0] = new Player(rackets[0], controls1, 0, -1);
+		this.players[1] = new Player(rackets[1], controls2, 0, -1);
 
 		int ballDiameter = 10;
 		this.b = new Ball(this, 3f, 3f, ballDiameter, new Square(ballDiameter),
@@ -107,8 +107,8 @@ public class Game {
 				}
 			}
 		}
-		player1.control(delta);
-		player2.control(delta);
+		players[0].control(delta);
+		players[1].control(delta);
 
 		b.update(delta);
 
@@ -159,6 +159,10 @@ public class Game {
 
 	public Racket[] getRackets() {
 		return this.rackets;
+	}
+	
+	public Player[] getPlayers() {
+		return this.players;
 	}
 
 	// public Block[] getBlocks() {
