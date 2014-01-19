@@ -113,7 +113,7 @@ public class Ball extends Entity {
 
 		// Collision bottom
 		if (this.coordinates.getY() + rc.getWidth() >= gameWindow.getHeight()) {
-			game.g
+			game.getPlayer1()
 			this.coordinates.setX(0);
 			this.coordinates.setY(0);
 		}

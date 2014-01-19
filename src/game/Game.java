@@ -164,6 +164,14 @@ public class Game {
 	public Player[] getPlayers() {
 		return this.players;
 	}
+	
+	public Player getPlayer0() {
+		return this.players[0];
+	}
+	
+	public Player getPlayer1() {
+		return this.players[1];
+	}
 
 	// public Block[] getBlocks() {
 	// return blocks;
