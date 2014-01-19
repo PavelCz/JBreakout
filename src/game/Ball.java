@@ -44,13 +44,13 @@ public class Ball extends Entity {
 					this.coordinates.setX(this.coordinates.getX() + newVelocity.getX());
 					this.coordinates.setY(this.coordinates.getY() + newVelocity.getY());
 				}
-				if (this.coordinates.getX() + this.length < racket.getX()) { // left
+				if (this.coordinates.getX() +rc.getWidth() < racket.getX()) { // left
 					this.velocity.setX(this.velocity.getX() * -1);
 				} else if (this.coordinates.getX() > racket.getX() + racket.getWidth()) { // right
 					this.velocity.setX(this.velocity.getX() * -1);
-				} else if (this.coordinates.getY() + this.length < racket.getY()) { // above
+				} else if (this.coordinates.getY() + rc.getWidth() < racket.getY()) { // above
 					this.velocity.setAngleDegrees((270 - distanceToRacketMiddle / 50 * 45));
-					this.coordinates.setY(racket.getY() - this.length);
+					this.coordinates.setY(racket.getY() - rc.getWidth());
 				} else { // below
 					this.velocity.setAngleDegrees((distanceToRacketMiddle / 50 * 45 + 90));
 					this.coordinates.setY(racket.getY() + racket.getHeight());
@@ -99,9 +99,9 @@ public class Ball extends Entity {
 
 	private void wallCollision(float previousX, float previousY) {
 		// Collision right
-		if (this.coordinates.getX() + this.length >= gameWindow.getWidth()) {
+		if (this.coordinates.getX() + rc.getWidth() >= gameWindow.getWidth()) {
 			this.coordinates.setY(previousY);
-			this.coordinates.setX(this.gameWindow.getWidth() - this.length);
+			this.coordinates.setX(this.gameWindow.getWidth() - rc.getWidth());
 			this.velocity.setX(this.velocity.getX() * (-1));
 		}
 		// Collision left
@@ -112,7 +112,7 @@ public class Ball extends Entity {
 		}
 
 		// Collision bottom
-		if (this.coordinates.getY() + this.length >= gameWindow.getHeight()) {
+		if (this.coordinates.getY() + rc.getWidth() >= gameWindow.getHeight()) {
 			System.out.println("FAIL");
 			this.coordinates.setX(0);
 			this.coordinates.setY(0);

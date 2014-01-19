@@ -29,9 +29,10 @@ public class Game {
 		this.rackets = new Racket[2];
 		int racketHeight = 25;
 		int racketWidth = 100;
-
+		//upper racket
 		this.rackets[0] = new Racket(gameWindow, this.gameWindow.getWidth() / 2
 				- racketWidth / 2, 50, racketWidth, racketHeight);
+		//lower racket
 		this.rackets[1] = new Racket(gameWindow, this.gameWindow.getWidth() / 2
 				- racketWidth / 2, this.gameWindow.getHeight() - racketHeight
 				- 50, racketWidth, racketHeight);
