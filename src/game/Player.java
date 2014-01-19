@@ -25,4 +25,22 @@ public class Player {
 			this.controlling.moveHorizontally(delta, 1);
 		}
 	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+
+	public int getLives() {
+		return lives;
+	}
+
+	public void setLives(int lives) {
+		this.lives = lives;
+	}
+	
+	
 }

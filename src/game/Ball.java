@@ -8,7 +8,8 @@ public class Ball extends Entity {
 	private MyVector2f velocity;
 	private RectangleCollision rc;
 
-	public Ball(Game game, float x, float y, int length, RenderObject renderObject, MyVector2f startVelocity) {
+	public Ball(Game game, float x, float y, int length,
+			RenderObject renderObject, MyVector2f startVelocity) {
 		super(game.getGameWindow());
 		this.game = game;
 
@@ -19,17 +20,20 @@ public class Ball extends Entity {
 
 		this.velocity = startVelocity;
 
-		this.rc = new RectangleCollision(this.coordinates, this.length, this.length);
+		this.rc = new RectangleCollision(this.coordinates, this.length,
+				this.length);
 	}
 
 	public void update(int delta) {
 		float previousX = this.getX();
 		float previousY = this.getY();
-		this.coordinates.setX(this.coordinates.getX() + this.velocity.getX() * delta);
-		this.coordinates.setY(this.coordinates.getY() + this.velocity.getY() * delta);
+		this.coordinates.setX(this.coordinates.getX() + this.velocity.getX()
+				* delta);
+		this.coordinates.setY(this.coordinates.getY() + this.velocity.getY()
+				* delta);
 		this.wallCollision(previousX, previousY);
 		this.racketCollision(previousX, previousY);
-		//this.ballCollision(previousX, previousY);
+		// this.ballCollision(previousX, previousY);
 	}
 
 	private void racketCollision(float previousX, float previousY) {
@@ -41,18 +45,24 @@ public class Ball extends Entity {
 				newVelocity.rotateDegrees(180);
 				newVelocity.setLength(1);
 				while (this.collidesWithRacket(racket)) {
-					this.coordinates.setX(this.coordinates.getX() + newVelocity.getX());
-					this.coordinates.setY(this.coordinates.getY() + newVelocity.getY());
+					this.coordinates.setX(this.coordinates.getX()
+							+ newVelocity.getX());
+					this.coordinates.setY(this.coordinates.getY()
+							+ newVelocity.getY());
 				}
-				if (this.coordinates.getX() +rc.getWidth() < racket.getX()) { // left
+				if (this.coordinates.getX() + rc.getWidth() < racket.getX()) { // left
 					this.velocity.setX(this.velocity.getX() * -1);
-				} else if (this.coordinates.getX() > racket.getX() + racket.getWidth()) { // right
+				} else if (this.coordinates.getX() > racket.getX()
+						+ racket.getWidth()) { // right
 					this.velocity.setX(this.velocity.getX() * -1);
-				} else if (this.coordinates.getY() + rc.getWidth() < racket.getY()) { // above
-					this.velocity.setAngleDegrees((270 - distanceToRacketMiddle / 50 * 45));
+				} else if (this.coordinates.getY() + rc.getWidth() < racket
+						.getY()) { // above
+					this.velocity
+							.setAngleDegrees((270 - distanceToRacketMiddle / 50 * 45));
 					this.coordinates.setY(racket.getY() - rc.getWidth());
 				} else { // below
-					this.velocity.setAngleDegrees((distanceToRacketMiddle / 50 * 45 + 90));
+					this.velocity
+							.setAngleDegrees((distanceToRacketMiddle / 50 * 45 + 90));
 					this.coordinates.setY(racket.getY() + racket.getHeight());
 				}
 
@@ -66,7 +76,8 @@ public class Ball extends Entity {
 	}
 
 	public boolean collidesWithRacket(Racket racket) {
-		return this.coordinates.getX() + this.length > racket.getX() && this.coordinates.getX() < racket.getX() + racket.getWidth()
+		return this.coordinates.getX() + this.length > racket.getX()
+				&& this.coordinates.getX() < racket.getX() + racket.getWidth()
 				&& this.coordinates.getY() + this.length > racket.getY()
 				&& this.coordinates.getY() < racket.getY() + racket.getHeight();
 	}
@@ -113,31 +124,51 @@ public class Ball extends Entity {
 
 		// Collision bottom
 		if (this.coordinates.getY() + rc.getWidth() >= gameWindow.getHeight()) {
-			game.getPlayer1()
-			this.coordinates.setX(0);
-			this.coordinates.setY(0);
+			Player player0 = game.getPlayer0();
+			Player player1 = game.getPlayer1();
+			player0.setScore(player0.getScore() + 1);
+			player1.setLives(player1.getLives() - 1);
+			System.out.println("1: " + player0.getScore());
+			System.out.println("2: " + player1.getScore());
+			this.resetBall(0);
 		}
 
 		// Collision top
 		if (this.coordinates.getY() < 0) {
-			this.coordinates.setX(previousX);
-			this.coordinates.setY(0);
-			this.velocity.setY(this.velocity.getY() * (-1));
+			Player player0 = game.getPlayer0();
+			Player player1 = game.getPlayer1();
+			player1.setScore(player1.getScore() + 1);
+			player0.setLives(player0.getLives() - 1);
+			System.out.println("1: " + player0.getScore());
+			System.out.println("2: " + player1.getScore());
+			this.resetBall(1);
 		}
 	}
 
-//	private void ballCollision(float previousX, float previousY) {
-//		int counter = 0;
-//		if (game.getBlocks() != null) {
-//			for (Block block : game.getBlocks()) {
-//				++counter;
-//				if (this.rc.collidesWith(block.getCollisionMask())) {
-//					System.out.println("collision with " + counter);
-//				}
-//			}
-//		}
-//
-//	}
+	private void resetBall(int winner) {
+		this.coordinates.setX(game.getGameWindow().getWidth() / 2 - this.length
+				/ 2);
+		this.coordinates.setY(game.getGameWindow().getHeight() / 2
+				- this.length / 2);
+		if (winner == 0) {
+			this.velocity = new MyVector2f(0.1f, -0.5f);
+		} else {
+			this.velocity = new MyVector2f(0.1f, 0.5f);
+		}
+	}
+
+	// private void ballCollision(float previousX, float previousY) {
+	// int counter = 0;
+	// if (game.getBlocks() != null) {
+	// for (Block block : game.getBlocks()) {
+	// ++counter;
+	// if (this.rc.collidesWith(block.getCollisionMask())) {
+	// System.out.println("collision with " + counter);
+	// }
+	// }
+	// }
+	//
+	// }
 
 	public MyVector2f getVelocity() {
 		return velocity;

@@ -16,10 +16,12 @@ public class Game {
 	private Player[] players;
 	private Controls1D controls1, controls2;
 	private Ball b;
+	private boolean running;
 
 	// private Block[] blocks;
 
 	public Game() {
+		this.running = true;
 		this.debug = false;
 		this.gameWindow = new Window(800, 600);
 		gameWindow.start();
@@ -27,18 +29,19 @@ public class Game {
 		this.controls2 = new Controls1D(Keyboard.KEY_A, Keyboard.KEY_D);
 
 		this.rackets = new Racket[2];
+		this.players = new Player[2];
 		int racketHeight = 25;
 		int racketWidth = 100;
-		//upper racket
+		// upper racket
 		this.rackets[0] = new Racket(gameWindow, this.gameWindow.getWidth() / 2
 				- racketWidth / 2, 50, racketWidth, racketHeight);
-		//lower racket
+		// lower racket
 		this.rackets[1] = new Racket(gameWindow, this.gameWindow.getWidth() / 2
 				- racketWidth / 2, this.gameWindow.getHeight() - racketHeight
 				- 50, racketWidth, racketHeight);
 
-		this.players[0] = new Player(rackets[0], controls1, 0, -1);
-		this.players[1] = new Player(rackets[1], controls2, 0, -1);
+		this.players[0] = new Player(rackets[0], controls1, 0, 5);
+		this.players[1] = new Player(rackets[1], controls2, 0, 5);
 
 		int ballDiameter = 10;
 		this.b = new Ball(this, 3f, 3f, ballDiameter, new Square(ballDiameter),
@@ -64,7 +67,7 @@ public class Game {
 
 	public void start() {
 		this.lastFPS = getTime();
-		while (!Display.isCloseRequested()) {
+		while (!Display.isCloseRequested() && this.running) {
 			int delta = this.getDelta();
 
 			this.update(delta);
@@ -117,6 +120,14 @@ public class Game {
 			b.setY(this.gameWindow.getHeight() - Mouse.getY());
 		}
 
+		if (this.players[0].getLives() <= 0) {
+			System.out.println("Player 2 won!!!");
+			this.running = false;
+		} else if (this.players[1].getLives() <= 0) {
+			System.out.println("Player 1 won!!!");
+			this.running = false;
+		}
+
 		this.updateFPS();
 	}
 
@@ -160,15 +171,15 @@ public class Game {
 	public Racket[] getRackets() {
 		return this.rackets;
 	}
-	
+
 	public Player[] getPlayers() {
 		return this.players;
 	}
-	
+
 	public Player getPlayer0() {
 		return this.players[0];
 	}
-	
+
 	public Player getPlayer1() {
 		return this.players[1];
 	}
