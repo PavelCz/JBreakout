@@ -7,11 +7,17 @@ public class Ball extends Entity {
 	private int length;
 	private MyVector2f velocity;
 	private RectangleCollision rc;
+	private boolean stopped;
+	private int stopCounter;
+	private final int stopDelay = 700;
 
 	public Ball(Game game, float x, float y, int length,
 			RenderObject renderObject, MyVector2f startVelocity) {
 		super(game.getGameWindow());
 		this.game = game;
+		
+		this.stopped= true;
+		this.stopCounter = this.stopDelay;
 
 		this.coordinates = new MyVector2f(x, y);
 		this.length = length;
@@ -25,6 +31,8 @@ public class Ball extends Entity {
 	}
 
 	public void update(int delta) {
+		
+		if(!this.stopped) {
 		float previousX = this.getX();
 		float previousY = this.getY();
 		this.coordinates.setX(this.coordinates.getX() + this.velocity.getX()
@@ -33,6 +41,12 @@ public class Ball extends Entity {
 				* delta);
 		this.wallCollision(previousX, previousY);
 		this.racketCollision(previousX, previousY);
+		} else {
+			this.stopCounter -= delta;
+			if(this.stopCounter <= 0) {
+				this.stopped = false;
+			}
+		}
 		// this.ballCollision(previousX, previousY);
 	}
 
@@ -155,6 +169,9 @@ public class Ball extends Entity {
 		} else {
 			this.velocity = new MyVector2f(0.1f, 0.5f);
 		}
+		
+		this.stopped = true;
+		this.stopCounter = this.stopDelay;
 		
 	}
 
