@@ -2,12 +2,15 @@ package game;
 
 import graphics.Square;
 import graphics.Window;
+import maths.MyVector2f;
 
 import org.lwjgl.Sys;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
+
+import control.Controls1D;
 
 public class Game {
 	private int fps;

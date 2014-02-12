@@ -2,6 +2,7 @@ package game;
 
 import graphics.RenderObject;
 import graphics.Window;
+import maths.MyVector2f;
 
 import org.lwjgl.util.vector.Vector2f;
 

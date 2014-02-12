@@ -1,4 +1,4 @@
-package game;
+package graphics;
 
 public class GUIElement {
 

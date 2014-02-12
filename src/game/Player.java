@@ -2,6 +2,9 @@ package game;
 
 import org.lwjgl.input.Keyboard;
 
+import control.Controllable;
+import control.Controls1D;
+
 public class Player {
 	private Controllable controlling;
 	private Controls1D controls;

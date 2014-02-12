@@ -1,4 +1,4 @@
-package game;
+package maths;
 
 public class MathmaticalMethods {
 	public static boolean isPointInsideRectangle(float x, float y,

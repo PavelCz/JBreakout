@@ -1,4 +1,5 @@
-package game;
+package control;
+
 
 public class Controls1D extends Controls {
 	private int moveLeftKey;

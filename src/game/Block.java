@@ -1,5 +1,7 @@
 package game;
 
+import maths.MyVector2f;
+import collision.RectangleCollision;
 import graphics.Rectangle;
 import graphics.Window;
 
