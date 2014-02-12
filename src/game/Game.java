@@ -1,7 +1,7 @@
 package game;
 
 import graphics.Square;
-import graphics.TwoColoredBar;
+import graphics.Healthbar;
 import graphics.Window;
 import maths.MyVector2f;
 
@@ -26,16 +26,14 @@ public class Game {
 	private boolean running;
 	private boolean physicsPaused;
 	private int counter1;
-	
+	private Healthbar[] healthbars ;
 	//Tests:
-	private TwoColoredBar t;
+	
 
 	// private Block[] blocks;
 
 	public Game() {
 		//Test:
-		this.t = new TwoColoredBar(10, 100, 20);
-		this.t.changeHealth(-1);
 		
 		//
 		this.running = true;
@@ -59,6 +57,10 @@ public class Game {
 
 		this.players[0] = new Player(rackets[0], controls1, 0, 5);
 		this.players[1] = new Player(rackets[1], controls2, 0, 5);
+		
+		this.healthbars = new Healthbar[2];
+		this.healthbars[0] = new Healthbar(0,0,this.players[0].getLives(), 100, 20);
+		this.healthbars[1] = new Healthbar(0,this.gameWindow.getHeight()-20,this.players[0].getLives(), 100, 20);
 
 		int ballDiameter = 10;
 		this.ball = new Ball(this, 3f, 3f, ballDiameter, new Square(ballDiameter), new MyVector2f(0.1f, 0.5f));
@@ -115,7 +117,9 @@ public class Game {
 		 * 
 		 * }
 		 */
-		t.render(0, 0);
+		for (Healthbar healthbar : this.healthbars) {
+			healthbar.render();
+		}
 		Display.update();
 
 	}
@@ -138,9 +142,12 @@ public class Game {
 					}
 				}
 			}
+			//Test Key Event
 			if (Keyboard.getEventKey() == Keyboard.KEY_O) {
 				if (Keyboard.getEventKeyState()) {
-					this.t.changeHealth(-1);
+					// Tests
+					
+					
 				}
 			}
 		}
@@ -163,8 +170,13 @@ public class Game {
 			this.running = false;
 		}
 		}
-
+		this.updateHealth();
 		this.updateFPS();
+	}
+	
+	private void updateHealth() {
+		this.healthbars[0].setHealth(this.players[0].getLives());
+		this.healthbars[1].setHealth(this.players[1].getLives());
 	}
 
 	public int getDelta() {
