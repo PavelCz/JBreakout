@@ -145,7 +145,7 @@ public class Ball extends Entity {
 		}
 	}
 
-	private void resetBall(int winner) {
+	public void resetBall(int winner) {
 		this.coordinates.setX(game.getGameWindow().getWidth() / 2 - this.length
 				/ 2);
 		this.coordinates.setY(game.getGameWindow().getHeight() / 2
@@ -155,6 +155,7 @@ public class Ball extends Entity {
 		} else {
 			this.velocity = new MyVector2f(0.1f, 0.5f);
 		}
+		
 	}
 
 	// private void ballCollision(float previousX, float previousY) {

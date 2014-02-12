@@ -15,13 +15,17 @@ public class Game {
 	private Racket[] rackets;
 	private Player[] players;
 	private Controls1D controls1, controls2;
-	private Ball b;
+	private Ball ball;
 	private boolean running;
+	private boolean physicsPaused;
+	private int counter1;
 
 	// private Block[] blocks;
 
 	public Game() {
 		this.running = true;
+		this.physicsPaused = false;
+		this.counter1 = 0;
 		this.debug = false;
 		this.gameWindow = new Window(800, 600);
 		gameWindow.start();
@@ -33,19 +37,17 @@ public class Game {
 		int racketHeight = 25;
 		int racketWidth = 100;
 		// upper racket
-		this.rackets[0] = new Racket(gameWindow, this.gameWindow.getWidth() / 2
-				- racketWidth / 2, 50, racketWidth, racketHeight);
+		this.rackets[0] = new Racket(gameWindow, this.gameWindow.getWidth() / 2 - racketWidth / 2, 50, racketWidth, racketHeight);
 		// lower racket
-		this.rackets[1] = new Racket(gameWindow, this.gameWindow.getWidth() / 2
-				- racketWidth / 2, this.gameWindow.getHeight() - racketHeight
-				- 50, racketWidth, racketHeight);
+		this.rackets[1] = new Racket(gameWindow, this.gameWindow.getWidth() / 2 - racketWidth / 2, this.gameWindow.getHeight()
+				- racketHeight - 50, racketWidth, racketHeight);
 
 		this.players[0] = new Player(rackets[0], controls1, 0, 5);
 		this.players[1] = new Player(rackets[1], controls2, 0, 5);
 
 		int ballDiameter = 10;
-		this.b = new Ball(this, 3f, 3f, ballDiameter, new Square(ballDiameter),
-				new MyVector2f(0.1f, 0.5f));
+		this.ball = new Ball(this, 3f, 3f, ballDiameter, new Square(ballDiameter), new MyVector2f(0.1f, 0.5f));
+		this.ball.resetBall(1);
 		// this.blocks = new Block[3];
 		// this.blocks[0] = new Block(gameWindow, 100, 100);
 		// this.blocks[1] = new Block(gameWindow, 400, 500);
@@ -70,7 +72,9 @@ public class Game {
 		while (!Display.isCloseRequested() && this.running) {
 			int delta = this.getDelta();
 
-			this.update(delta);
+			
+				this.update(delta);
+			
 
 			this.render();
 
@@ -89,7 +93,7 @@ public class Game {
 		for (Racket racket : this.rackets) {
 			racket.render();
 		}
-		b.render();
+		ball.render();
 
 		/*
 		 * for (Block block : this.blocks) { block.render();
@@ -103,21 +107,32 @@ public class Game {
 
 	public void update(int delta) {
 		while (Keyboard.next()) {
-			if (Keyboard.getEventKey() == Keyboard.KEY_P) {
+			if (Keyboard.getEventKey() == Keyboard.KEY_L) {
 				if (Keyboard.getEventKeyState()) {
 					this.debug = !this.debug;
 					System.out.println(this.debug);
 				}
 			}
+			if (Keyboard.getEventKey() == Keyboard.KEY_P) {
+				if (Keyboard.getEventKeyState()) {
+					this.tooglePause();
+					if(this.physicsPaused) {
+						System.out.println("Paused");
+					} else {
+						System.out.println("Unpaused");
+					}
+				}
+			}
 		}
+		if (!this.physicsPaused) {
 		players[0].control(delta);
 		players[1].control(delta);
-
-		b.update(delta);
+		
+		ball.update(delta);
 
 		if (this.debug) {
-			b.setX(Mouse.getX());
-			b.setY(this.gameWindow.getHeight() - Mouse.getY());
+			ball.setX(Mouse.getX());
+			ball.setY(this.gameWindow.getHeight() - Mouse.getY());
 		}
 
 		if (this.players[0].getLives() <= 0) {
@@ -126,6 +141,7 @@ public class Game {
 		} else if (this.players[1].getLives() <= 0) {
 			System.out.println("Player 1 won!!!");
 			this.running = false;
+		}
 		}
 
 		this.updateFPS();
@@ -158,6 +174,10 @@ public class Game {
 			lastFPS += 1000;
 		}
 		fps++;
+	}
+	
+	public void tooglePause() {
+		this.physicsPaused = !this.physicsPaused;
 	}
 
 	public Window getGameWindow() {
