@@ -14,7 +14,7 @@ public class Pixel extends BasicRenderObject {
 	}
 
 	/**
-	 * Note: It seems, a Pixel at Position (0; 0) can't be seen. The
+	 * Note: It seems, a Pixel at Position (0; 0) cant be seen. The
 	 * y-coordinate has to be at least 1 that it can be seen. This means a Pixel
 	 * in the upper left corner actually has the coordinates (0; 1).
 	 * 

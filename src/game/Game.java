@@ -1,5 +1,6 @@
 package game;
 
+import graphics.PixelNumber;
 import graphics.Square;
 import graphics.Healthbar;
 import graphics.Window;
@@ -26,16 +27,17 @@ public class Game {
 	private boolean running;
 	private boolean physicsPaused;
 	private int counter1;
-	private Healthbar[] healthbars ;
-	//Tests:
-	
+	private Healthbar[] healthbars;
+	// Tests:
+	private PixelNumber p;
 
 	// private Block[] blocks;
 
 	public Game() {
-		//Test:
-		
+		// Test:
+
 		//
+		this.p = new PixelNumber(1, 3);
 		this.running = true;
 		this.physicsPaused = false;
 		this.counter1 = 0;
@@ -57,10 +59,10 @@ public class Game {
 
 		this.players[0] = new Player(rackets[0], controls1, 0, 5);
 		this.players[1] = new Player(rackets[1], controls2, 0, 5);
-		
+
 		this.healthbars = new Healthbar[2];
-		this.healthbars[0] = new Healthbar(0,0,this.players[0].getLives(), 100, 20);
-		this.healthbars[1] = new Healthbar(0,this.gameWindow.getHeight()-20,this.players[0].getLives(), 100, 20);
+		this.healthbars[0] = new Healthbar(0, 0, this.players[0].getLives(), 100, 20);
+		this.healthbars[1] = new Healthbar(0, this.gameWindow.getHeight() - 20, this.players[0].getLives(), 100, 20);
 
 		int ballDiameter = 10;
 		this.ball = new Ball(this, 3f, 3f, ballDiameter, new Square(ballDiameter), new MyVector2f(0.1f, 0.5f));
@@ -89,9 +91,7 @@ public class Game {
 		while (!Display.isCloseRequested() && this.running) {
 			int delta = this.getDelta();
 
-			
-				this.update(delta);
-			
+			this.update(delta);
 
 			this.render();
 
@@ -106,20 +106,20 @@ public class Game {
 
 		// Clear the screen and depth buffer
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
-
+		
+		
+		
 		for (Racket racket : this.rackets) {
 			racket.render();
 		}
 		ball.render();
-
-		/*
-		 * for (Block block : this.blocks) { block.render();
-		 * 
-		 * }
-		 */
+		
 		for (Healthbar healthbar : this.healthbars) {
 			healthbar.render();
 		}
+		
+		p.render(1, 21);
+		
 		Display.update();
 
 	}
@@ -135,45 +135,44 @@ public class Game {
 			if (Keyboard.getEventKey() == Keyboard.KEY_P) {
 				if (Keyboard.getEventKeyState()) {
 					this.tooglePause();
-					if(this.physicsPaused) {
+					if (this.physicsPaused) {
 						System.out.println("Paused");
 					} else {
 						System.out.println("Unpaused");
 					}
 				}
 			}
-			//Test Key Event
+			// Test Key Event
 			if (Keyboard.getEventKey() == Keyboard.KEY_O) {
 				if (Keyboard.getEventKeyState()) {
 					// Tests
-					
-					
+
 				}
 			}
 		}
 		if (!this.physicsPaused) {
-		players[0].control(delta);
-		players[1].control(delta);
-		
-		ball.update(delta);
+			players[0].control(delta);
+			players[1].control(delta);
 
-		if (this.debug) {
-			ball.setX(Mouse.getX());
-			ball.setY(this.gameWindow.getHeight() - Mouse.getY());
-		}
+			ball.update(delta);
 
-		if (this.players[0].getLives() <= 0) {
-			System.out.println("Player 2 won!!!");
-			this.running = false;
-		} else if (this.players[1].getLives() <= 0) {
-			System.out.println("Player 1 won!!!");
-			this.running = false;
-		}
+			if (this.debug) {
+				ball.setX(Mouse.getX());
+				ball.setY(this.gameWindow.getHeight() - Mouse.getY());
+			}
+
+			if (this.players[0].getLives() <= 0) {
+				System.out.println("Player 2 won!!!");
+				this.running = false;
+			} else if (this.players[1].getLives() <= 0) {
+				System.out.println("Player 1 won!!!");
+				this.running = false;
+			}
 		}
 		this.updateHealth();
 		this.updateFPS();
 	}
-	
+
 	private void updateHealth() {
 		this.healthbars[0].setHealth(this.players[0].getLives());
 		this.healthbars[1].setHealth(this.players[1].getLives());
@@ -207,7 +206,7 @@ public class Game {
 		}
 		fps++;
 	}
-	
+
 	public void tooglePause() {
 		this.physicsPaused = !this.physicsPaused;
 	}

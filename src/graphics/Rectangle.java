@@ -15,7 +15,7 @@ public class Rectangle extends BasicRenderObject {
 		this.width = width;
 		this.height = height;
 		this.colorsRGB = new Vector3f();
-		this.setColor(0.1f, 0.1f, 0.5f);
+		this.setColor(0.1f, 0.5f, 0.1f);
 	}
 
 	public Rectangle(int width, int height, String color) {
