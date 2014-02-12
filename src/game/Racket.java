@@ -1,5 +1,8 @@
 package game;
 
+import graphics.Rectangle;
+import graphics.Window;
+
 import org.lwjgl.util.vector.Vector2f;
 
 public class Racket extends Entity implements Controllable {

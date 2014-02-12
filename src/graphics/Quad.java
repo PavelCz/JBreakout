@@ -1,3 +1,4 @@
+package graphics;
 // Quad unsupported for now
 
 /*package game;

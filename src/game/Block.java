@@ -1,5 +1,8 @@
 package game;
 
+import graphics.Rectangle;
+import graphics.Window;
+
 public class Block extends Entity {
 	private float width;
 	private float height;

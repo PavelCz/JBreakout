@@ -1,4 +1,4 @@
-package game;
+package graphics;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;

@@ -1,5 +1,8 @@
 package game;
 
+import graphics.Square;
+import graphics.Window;
+
 import org.lwjgl.Sys;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;

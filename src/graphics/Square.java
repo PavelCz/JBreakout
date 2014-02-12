@@ -1,4 +1,4 @@
-package game;
+package graphics;
 
 import org.lwjgl.util.vector.Vector2f;
 

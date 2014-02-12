@@ -1,5 +1,8 @@
 package game;
 
+import graphics.RenderObject;
+import graphics.Window;
+
 import org.lwjgl.util.vector.Vector2f;
 
 public abstract class Entity {

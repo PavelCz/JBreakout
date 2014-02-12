@@ -1,5 +1,7 @@
 package game;
 
+import graphics.RenderObject;
+
 import org.lwjgl.util.vector.Vector2f;
 
 public class Ball extends Entity {
