@@ -4,7 +4,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
 
-public class Pixel extends RenderObject {
+public class Pixel extends BasicRenderObject {
 	// private Quad quad;
 	private Vector3f colorsRGB;
 

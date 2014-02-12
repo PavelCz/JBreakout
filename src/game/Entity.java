@@ -1,13 +1,13 @@
 package game;
 
-import graphics.RenderObject;
+import graphics.BasicRenderObject;
 import graphics.Window;
 import maths.MyVector2f;
 
 import org.lwjgl.util.vector.Vector2f;
 
 public abstract class Entity {
-	protected RenderObject renderObject;
+	protected BasicRenderObject renderObject;
 	protected Window gameWindow;
 	protected MyVector2f coordinates;
 
@@ -15,11 +15,11 @@ public abstract class Entity {
 		this.gameWindow = gameWindow;
 	}
 
-	public RenderObject getRenderObject() {
+	public BasicRenderObject getRenderObject() {
 		return renderObject;
 	}
 
-	public void setRenderObject(RenderObject renderObject) {
+	public void setRenderObject(BasicRenderObject renderObject) {
 		this.renderObject = renderObject;
 	}
 

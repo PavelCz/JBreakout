@@ -4,7 +4,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
 
-public class Rectangle extends RenderObject {
+public class Rectangle extends BasicRenderObject {
 	// private Quad quad;
 	private Vector3f colorsRGB;
 
@@ -52,6 +52,10 @@ public class Rectangle extends RenderObject {
 
 	public void setColor(float r, float g, float b) {
 		this.colorsRGB.set(r, g, b);
+	}
+	
+	public void setWidth(float width) {
+		this.width = (int)width;
 	}
 
 	

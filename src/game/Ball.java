@@ -1,6 +1,6 @@
 package game;
 
-import graphics.RenderObject;
+import graphics.BasicRenderObject;
 import maths.MyVector2f;
 
 import org.lwjgl.util.vector.Vector2f;
@@ -17,7 +17,7 @@ public class Ball extends Entity {
 	private final int stopDelay = 700;
 
 	public Ball(Game game, float x, float y, int length,
-			RenderObject renderObject, MyVector2f startVelocity) {
+			BasicRenderObject renderObject, MyVector2f startVelocity) {
 		super(game.getGameWindow());
 		this.game = game;
 		

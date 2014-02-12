@@ -1,6 +1,7 @@
 package game;
 
 import graphics.Square;
+import graphics.TwoColoredBar;
 import graphics.Window;
 import maths.MyVector2f;
 
@@ -25,10 +26,18 @@ public class Game {
 	private boolean running;
 	private boolean physicsPaused;
 	private int counter1;
+	
+	//Tests:
+	private TwoColoredBar t;
 
 	// private Block[] blocks;
 
 	public Game() {
+		//Test:
+		this.t = new TwoColoredBar(10, 100, 20);
+		this.t.changeHealth(-1);
+		
+		//
 		this.running = true;
 		this.physicsPaused = false;
 		this.counter1 = 0;
@@ -106,7 +115,7 @@ public class Game {
 		 * 
 		 * }
 		 */
-
+		t.render(0, 0);
 		Display.update();
 
 	}
@@ -127,6 +136,11 @@ public class Game {
 					} else {
 						System.out.println("Unpaused");
 					}
+				}
+			}
+			if (Keyboard.getEventKey() == Keyboard.KEY_O) {
+				if (Keyboard.getEventKeyState()) {
+					this.t.changeHealth(-1);
 				}
 			}
 		}

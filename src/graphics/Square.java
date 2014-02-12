@@ -2,7 +2,7 @@ package graphics;
 
 import org.lwjgl.util.vector.Vector2f;
 
-public class Square extends RenderObject {
+public class Square extends BasicRenderObject {
 	private Rectangle rectangle;
 
 	private int length;
