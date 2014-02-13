@@ -65,7 +65,7 @@ public class Game {
 		this.healthbars[0] = new Healthbar(0, 0, this.players[0].getLives(), 100, 20);
 		this.healthbars[1] = new Healthbar(0, this.gameWindow.getHeight() - 20, this.players[0].getLives(), 100, 20);
 		
-		int scoreScale = 2;
+		int scoreScale = 3;
 		this.scores = new Score[2];
 		this.scores[0] = new Score(800,0, this.players[0].getScore(),false, scoreScale);
 		this.scores[1] = new Score(800,this.gameWindow.getHeight() - scoreScale * 5 , this.players[1].getScore(), false, scoreScale);
@@ -190,6 +190,8 @@ public class Game {
 	private void updateHealth() {
 		this.healthbars[0].setHealth(this.players[0].getLives());
 		this.healthbars[1].setHealth(this.players[1].getLives());
+		this.scores[0].setScore(this.players[0].getScore());
+		this.scores[1].setScore(this.players[1].getScore());
 	}
 
 	public int getDelta() {

@@ -147,8 +147,6 @@ public class Ball extends Entity {
 			Player player1 = game.getPlayer1();
 			player0.setScore(player0.getScore() + 1);
 			player1.setLives(player1.getLives() - 1);
-			System.out.println("1: " + player0.getScore());
-			System.out.println("2: " + player1.getScore());
 			this.resetBall(0);
 		}
 
@@ -158,8 +156,6 @@ public class Ball extends Entity {
 			Player player1 = game.getPlayer1();
 			player1.setScore(player1.getScore() + 1);
 			player0.setLives(player0.getLives() - 1);
-			System.out.println("1: " + player0.getScore());
-			System.out.println("2: " + player1.getScore());
 			this.resetBall(1);
 		}
 	}

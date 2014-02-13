@@ -14,7 +14,7 @@ public class Score extends GUIElement {
 		this.coordinates = new MyVector2f(x, y);
 	}
 
-	public void setNumber(int number) {
+	public void setScore(int number) {
 		this.number = number;
 	}
 
