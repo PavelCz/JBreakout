@@ -29,22 +29,23 @@ public class Game {
 	private boolean physicsPaused;
 	private int counter1;
 	private Healthbar[] healthbars;
+	private Score[] scores;
+
 	// Tests:
-	private Score s;
 
 	// private Block[] blocks;
 
 	public Game() {
 		// Test:
-		this.s = new Score(0, 20, 789, 3f);
-		//
 
+		//
+		
 		this.running = true;
 		this.physicsPaused = false;
 		this.counter1 = 0;
 		this.debug = false;
 		this.gameWindow = new Window(800, 600);
-		gameWindow.start();
+		this.gameWindow.start();
 		this.controls1 = new Controls1D(Keyboard.KEY_LEFT, Keyboard.KEY_RIGHT);
 		this.controls2 = new Controls1D(Keyboard.KEY_A, Keyboard.KEY_D);
 
@@ -64,6 +65,10 @@ public class Game {
 		this.healthbars = new Healthbar[2];
 		this.healthbars[0] = new Healthbar(0, 0, this.players[0].getLives(), 100, 20);
 		this.healthbars[1] = new Healthbar(0, this.gameWindow.getHeight() - 20, this.players[0].getLives(), 100, 20);
+		
+		this.scores = new Score[2];
+		this.scores[0] = new Score(50,50, 104, false, 2);
+		this.scores[1] = new Score(100,50, 104, false, 2);
 
 		int ballDiameter = 10;
 		this.ball = new Ball(this, 3f, 3f, ballDiameter, new Square(ballDiameter), new MyVector2f(0.1f, 0.5f));
@@ -83,7 +88,7 @@ public class Game {
 		GL11.glLoadIdentity();
 		GL11.glOrtho(0, gameWindow.getWidth(), gameWindow.getHeight(), 0, 1, -1);
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
-		getDelta();
+		this.getDelta();
 
 	}
 
@@ -112,15 +117,24 @@ public class Game {
 			racket.render();
 		}
 		ball.render();
+		this.renderGUI();
 
-		for (Healthbar healthbar : this.healthbars) {
-			healthbar.render();
-		}
+		
 		// render tests
-		s.render();
 		//
 		Display.update();
 
+	}
+	
+	private void renderGUI() {
+		for (Healthbar healthbar : this.healthbars) {
+			healthbar.render();
+		}
+		
+		for (Score score : this.scores) {
+			score.render();
+			
+		}
 	}
 
 	public void update(int delta) {
