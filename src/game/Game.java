@@ -1,8 +1,11 @@
 package game;
 
+import java.io.IOException;
+
 import graphics.Pixel;
 import graphics.PixelNumeral;
 import graphics.Score;
+import graphics.Sprite;
 import graphics.Square;
 import graphics.Healthbar;
 import graphics.Window;
@@ -33,11 +36,17 @@ public class Game {
 	private Score[] scores;
 
 	// Tests:
-	// private Block[] blocks;
+	private Sprite s;
 
+	//
 	public Game() {
 		// Test:
-		
+		try {
+			s = new Sprite("D:/Users/pavel/git/JBreakout/src/data/jo2.bmp", 10);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		//
 		this.running = true;
 		this.physicsPaused = false;
@@ -64,11 +73,11 @@ public class Game {
 		this.healthbars = new Healthbar[2];
 		this.healthbars[0] = new Healthbar(0, 0, this.players[0].getLives(), 100, 20);
 		this.healthbars[1] = new Healthbar(0, this.gameWindow.getHeight() - 20, this.players[0].getLives(), 100, 20);
-		
+
 		int scoreScale = 3;
 		this.scores = new Score[2];
-		this.scores[0] = new Score(800,0, this.players[0].getScore(),false, scoreScale);
-		this.scores[1] = new Score(800,this.gameWindow.getHeight() - scoreScale * 5 , this.players[1].getScore(), false, scoreScale);
+		this.scores[0] = new Score(800, 0, this.players[0].getScore(), false, scoreScale);
+		this.scores[1] = new Score(800, this.gameWindow.getHeight() - scoreScale * 5, this.players[1].getScore(), false, scoreScale);
 
 		int ballDiameter = 10;
 		this.ball = new Ball(this, 3f, 3f, ballDiameter, new Square(ballDiameter), new MyVector2f(0.1f, 0.5f));
@@ -117,23 +126,24 @@ public class Game {
 			racket.render();
 		}
 		ball.render();
+		s.render(50,50);
+		
 		this.renderGUI();
 
-		
 		// render tests
 		//
 		Display.update();
 
 	}
-	
+
 	private void renderGUI() {
 		for (Healthbar healthbar : this.healthbars) {
 			healthbar.render();
 		}
-		
+
 		for (Score score : this.scores) {
 			score.render();
-			
+
 		}
 	}
 
