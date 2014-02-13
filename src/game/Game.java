@@ -1,5 +1,6 @@
 package game;
 
+import graphics.Pixel;
 import graphics.PixelNumeral;
 import graphics.Score;
 import graphics.Square;
@@ -32,12 +33,10 @@ public class Game {
 	private Score[] scores;
 
 	// Tests:
-
 	// private Block[] blocks;
 
 	public Game() {
 		// Test:
-
 		//
 		
 		this.running = true;
@@ -66,9 +65,10 @@ public class Game {
 		this.healthbars[0] = new Healthbar(0, 0, this.players[0].getLives(), 100, 20);
 		this.healthbars[1] = new Healthbar(0, this.gameWindow.getHeight() - 20, this.players[0].getLives(), 100, 20);
 		
+		int scoreScale = 2;
 		this.scores = new Score[2];
-		this.scores[0] = new Score(50,50, 104, false, 2);
-		this.scores[1] = new Score(100,50, 104, false, 2);
+		this.scores[0] = new Score(800,0, this.players[0].getScore(),false, scoreScale);
+		this.scores[1] = new Score(800,this.gameWindow.getHeight() - scoreScale * 5 , this.players[1].getScore(), false, scoreScale);
 
 		int ballDiameter = 10;
 		this.ball = new Ball(this, 3f, 3f, ballDiameter, new Square(ballDiameter), new MyVector2f(0.1f, 0.5f));
@@ -121,6 +121,7 @@ public class Game {
 
 		
 		// render tests
+	
 		//
 		Display.update();
 

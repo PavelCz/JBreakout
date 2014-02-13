@@ -21,16 +21,13 @@ public class Score extends GUIElement {
 	@Override
 	public void render() {
 		PixelNumeral pixelNumber;
-		int numberBuffer;
-		int logNumber;
+		int numberBuffer = this.number;
 		int numberNumerals = this.getNumberNumerals();
 
 		float x = this.coordinates.getX();
 		float y = this.coordinates.getY();
 		if (this.leftAligned) {
-
-			numberBuffer = this.number;
-			logNumber = 1;
+			int logNumber = 1;
 			for (int i = 1; i < numberNumerals; ++i) {
 				logNumber *= 10;
 			}
@@ -45,8 +42,7 @@ public class Score extends GUIElement {
 			}
 		} else {
 			for (int i = 0; i < numberNumerals; ++i) {
-				numberBuffer = this.number % 10;
-				pixelNumber = new PixelNumeral(numberBuffer, this.scale);
+				pixelNumber = new PixelNumeral(numberBuffer%10, this.scale);
 				if(i == 0) {
 				pixelNumber.render(x - this.scale * 4 * (i+1), y);
 				} else {
