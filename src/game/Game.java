@@ -1,6 +1,7 @@
 package game;
 
-import graphics.PixelNumber;
+import graphics.PixelNumeral;
+import graphics.Score;
 import graphics.Square;
 import graphics.Healthbar;
 import graphics.Window;
@@ -29,15 +30,15 @@ public class Game {
 	private int counter1;
 	private Healthbar[] healthbars;
 	// Tests:
-	private PixelNumber p;
+	private Score s;
 
 	// private Block[] blocks;
 
 	public Game() {
 		// Test:
-
+		this.s = new Score(0, 20, 789, 3f);
 		//
-		this.p = new PixelNumber(1, 3);
+
 		this.running = true;
 		this.physicsPaused = false;
 		this.counter1 = 0;
@@ -106,20 +107,18 @@ public class Game {
 
 		// Clear the screen and depth buffer
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
-		
-		
-		
+
 		for (Racket racket : this.rackets) {
 			racket.render();
 		}
 		ball.render();
-		
+
 		for (Healthbar healthbar : this.healthbars) {
 			healthbar.render();
 		}
-		
-		p.render(1, 21);
-		
+		// render tests
+		s.render();
+		//
 		Display.update();
 
 	}

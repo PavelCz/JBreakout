@@ -1,11 +1,11 @@
 package graphics;
 
-public class PixelNumber extends AdvancedRenderObject {
+public class PixelNumeral extends AdvancedRenderObject {
 	private Square[][] pixels;
 	private float scale;
 	private Square sqre;
 
-	public PixelNumber(int number, float scale) {
+	public PixelNumeral(int number, float scale) {
 		this.pixels = new Square[5][4];
 		this.scale = scale;
 		this.sqre = new Square((int) this.scale);
@@ -59,7 +59,7 @@ public class PixelNumber extends AdvancedRenderObject {
 			this.pixels[4] = new Square[] { sqre, null, null, null };
 		} else if (number == 8) {
 			this.pixels[0] = new Square[] { null, sqre, sqre, null };
-			this.pixels[1] = new Square[] { null, null, null, sqre };
+			this.pixels[1] = new Square[] { sqre, null, null, sqre };
 			this.pixels[2] = new Square[] { null, sqre, sqre, null };
 			this.pixels[3] = new Square[] { sqre, null, null, sqre };
 			this.pixels[4] = new Square[] { null, sqre, sqre, null };
@@ -71,11 +71,7 @@ public class PixelNumber extends AdvancedRenderObject {
 			this.pixels[4] = new Square[] { sqre, sqre, sqre, sqre };
 		} else {
 
-			this.pixels[0] = new Square[] { null, null, null, null };
-			this.pixels[1] = new Square[] { null, null, null, null };
-			this.pixels[2] = new Square[] { null, null, null, null };
-			this.pixels[3] = new Square[] { null, null, null, null };
-			this.pixels[4] = new Square[] { null, null, null, null };
+			throw new IllegalArgumentException("PixelNumeral only takes numerals");
 		}
 
 	}

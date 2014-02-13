@@ -20,15 +20,30 @@ public class Score extends GUIElement {
 
 	@Override
 	public void render() {
-		if (this.leftAligned) {
-			if (this.number > 999) {
+		PixelNumeral pixelNumber;
 
+		if (this.leftAligned) {
+			float x = this.coordinates.getX();
+			float y = this.coordinates.getY();
+			int numberNumerals = this.getNumberNumerals();
+			int numberBuffer = this.number;
+			int logNumber = 1;
+			for (int i = 1; i < numberNumerals; ++i) {
+				logNumber *= 10;
+			}
+			for (int i = 0; i < numberNumerals; ++i) {
+				pixelNumber = new PixelNumeral(numberBuffer / (logNumber), this.scale);
+				// every PixelNumber is 4 pixels wide and is scaled. With i * 5 * scale there is a gap of 1 Pixel between each numeral
+				// of a number
+				pixelNumber.render(x + i * 5 * this.scale, y);
+				numberBuffer %= logNumber;
+				logNumber /= 10;
 			}
 		}
 
 	}
 
-	public int getNumberNumerals() {
+	private int getNumberNumerals() {
 		if (this.number == 0) {
 			return 1;
 		} else {
@@ -40,6 +55,10 @@ public class Score extends GUIElement {
 
 			return i;
 		}
+	}
+	
+	public void setLeftALigned(boolean leftAligned) {
+		this.leftAligned = leftAligned;
 	}
 
 }
