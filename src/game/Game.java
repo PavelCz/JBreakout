@@ -37,8 +37,8 @@ public class Game {
 
 	public Game() {
 		// Test:
-		//
 		
+		//
 		this.running = true;
 		this.physicsPaused = false;
 		this.counter1 = 0;
@@ -121,7 +121,6 @@ public class Game {
 
 		
 		// render tests
-	
 		//
 		Display.update();
 

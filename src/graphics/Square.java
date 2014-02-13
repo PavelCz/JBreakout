@@ -19,6 +19,10 @@ public class Square extends BasicRenderObject {
 		this.length = length;
 
 	}
+	public Square(int length, float r, float g, float b) {
+		this(length);
+		this.setColor(r, g, b);
+	}
 	
 	
 

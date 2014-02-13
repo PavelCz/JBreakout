@@ -18,22 +18,12 @@ public class Rectangle extends BasicRenderObject {
 		this.setColor(0.1f, 0.5f, 0.1f);
 	}
 
-	public Rectangle(int width, int height, String color) {
+	public Rectangle(int width, int height, float r, float g, float b) {
 		this.width = width;
 		this.height = height;
 		this.colorsRGB = new Vector3f();
-		switch (color) {
-		case "blau":
-			this.setColor(0.1f, 0.1f, 0.5f);
-			break;
-		case "rot":
-			this.setColor(0.5f, 0.1f, 0.1f);
-			break;
-		case "gelb":
-			this.setColor(0.1f, 0.5f, 0.1f);
-			break;
-
-		}
+		this.setColor(r, g, b);
+		
 	}
 
 	public void render(float x, float y) {
