@@ -5,7 +5,7 @@ import java.io.IOException;
 import graphics.Pixel;
 import graphics.PixelNumeral;
 import graphics.Score;
-import graphics.Sprite;
+import graphics.ImageFromBMP;
 import graphics.Square;
 import graphics.Healthbar;
 import graphics.Window;
@@ -36,13 +36,13 @@ public class Game {
 	private Score[] scores;
 
 	// Tests:
-	private Sprite s;
+	private ImageFromBMP s;
 
 	//
 	public Game() {
 		// Test:
 		try {
-			s = new Sprite("/src/data/jo2.bmp", 10);
+			s = new ImageFromBMP("./data/jo2.bmp", 10);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
