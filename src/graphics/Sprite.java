@@ -44,10 +44,10 @@ public class Sprite extends AdvancedRenderObject{
 		System.out.println(compressionType);
 		this.width = bytes[18];
 		this.height = bytes[18];
-		System.out.println(bitsPerPixel);
-		System.out.println(whereStartsImage);
-		System.out.println(sizeOfTheFile);
-		System.out.println("Colors: " + numberColorsUsed);
+//		System.out.println(bitsPerPixel);
+//		System.out.println(whereStartsImage);
+//		System.out.println(sizeOfTheFile);
+//		System.out.println("Colors: " + numberColorsUsed);
 		
 		int[][]pictureBytes = new int[size-54][3];
 		
@@ -56,11 +56,14 @@ public class Sprite extends AdvancedRenderObject{
 			pictureBytes[k][1] = bytes[++j];
 			pictureBytes[k][2] = bytes[++j];
 		}
+		//System.out.println("+++" + pictureBytes[99][0]);
 		pixels = new Square[this.height][this.width];
+		int[][]pixels2 = new int[this.height][this.width];
 		
 		int l = 0;
 		for(int j = this.height - 1; j >= 0; --j) {
 			for(int k = 0; k < this.width; ++k) {
+				
 				int r; 
 				int g;
 				int b;
@@ -74,13 +77,19 @@ public class Sprite extends AdvancedRenderObject{
 				green=g/255;
 				blue=b/255;
 				pixels[j][k] = new Square((int)scale, red, green, blue);
-				
+				pixels2[j][k] = g;
 				
 				++l;
 			}
 		}
+		for (int[] js : pixels2) {
+			for (int j : js) {
+				System.out.println(j);
+			}
+		}
 		
-		System.out.println(bytes[22]);
+		
+		//System.out.println(bytes[22]);
 		/*for (int j = 0; j < bytes.length; ++j) {
 			System.out.println(bytes[j]);
 		}
