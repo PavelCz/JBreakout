@@ -42,7 +42,7 @@ public class Game {
 	public Game() {
 		// Test:
 		try {
-			s = new Sprite("H:/git/JBreakout/src/data/jo2.bmp", 10);
+			s = new Sprite("/src/data/jo2.bmp", 10);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

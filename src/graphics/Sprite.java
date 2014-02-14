@@ -70,9 +70,9 @@ public class Sprite extends AdvancedRenderObject{
 				float red;
 				float green;
 				float blue;
-				b = pictureBytes[l][0];
+				r = pictureBytes[l][0];
 				g = pictureBytes[l][1];
-				r = pictureBytes[l][2];
+				b = pictureBytes[l][2];
 				red=r/255;
 				green=g/255;
 				blue=b/255;
