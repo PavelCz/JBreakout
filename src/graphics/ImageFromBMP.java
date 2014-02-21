@@ -85,9 +85,9 @@ public class ImageFromBMP extends AdvancedRenderObject {
 					for (int j = this.height - 1; j >= 0; --j) {
 						for (int k = 0; k < this.width; ++k) {
 
-							int r;
-							int g;
-							int b;
+							float r;
+							float g;
+							float b;
 							float red;
 							float green;
 							float blue;
@@ -98,7 +98,7 @@ public class ImageFromBMP extends AdvancedRenderObject {
 							green = g / 255;
 							blue = b / 255;
 							pixels[j][k] = new Square(scale, red, green, blue);
-							pixels2[j][k] = g;
+							//pixels2[j][k] = g;
 
 							++l;
 						}

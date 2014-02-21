@@ -42,7 +42,7 @@ public class Game {
 	public Game() {
 		// Test:
 		try {
-			s = new ImageFromBMP("./data/jo2.bmp", 10);
+			s = new ImageFromBMP("./data/A.bmp", 10);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
