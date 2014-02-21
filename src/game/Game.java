@@ -43,8 +43,7 @@ public class Game {
 		// Test:
 		
 		//
-		this.scoreText1 = new Text("./data/font", "A",200, 0,5);
-		this.scoreText2 = new Text("./data/font", "WUSS",200, 400,5);
+		
 		this.running = true;
 		this.physicsPaused = false;
 		this.counter1 = 0;
@@ -75,7 +74,10 @@ public class Game {
 		this.scores = new Score[2];
 		this.scores[0] = new Score(800, 0, this.players[0].getScore(), false, scoreScale);
 		this.scores[1] = new Score(800, this.gameWindow.getHeight() - scoreScale * 5, this.players[1].getScore(), false, scoreScale);
-
+		
+		this.scoreText1 = new Text("./data/font", "SCORE", gameWindow.getWidth() - 20 * 7, 0, 20);
+		this.scoreText2 = new Text("./data/font", "SCORE", gameWindow.getWidth() - 20 * 7, gameWindow.getHeight() - 20, 20);
+		
 		int ballDiameter = 10;
 		this.ball = new Ball(this, 3f, 3f, ballDiameter, new Square(ballDiameter), new MyVector2f(0.1f, 0.5f));
 		this.ball.resetBall(1);

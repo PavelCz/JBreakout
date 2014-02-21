@@ -12,12 +12,13 @@ public class Text extends GUIElement {
 	 * @param folder
 	 *            the folder where all the pictures of the letters are as bmps.
 	 */
-	public Text(String folder, String text, float x, float y, float scale) {
+	public Text(String folder, String text, float x, float y, float height) {
 		super(x, y);
+		int characterHeight = 5;
+		this.scale = height /characterHeight;
 		Alphabet alphabet = new Alphabet();
 		this.text = text;
 		this.letters = new Image[26];
-		this.scale = scale;
 		for (int i = 0; i < 26; ++i) {
 			letters[i] = new Image(folder +"/"+ alphabet.getLetter(i) + ".bmp", this.scale);
 
