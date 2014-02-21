@@ -1,5 +1,6 @@
-package graphics;
+package gui;
 
+import graphics.Window;
 import maths.MyVector2f;
 
 public abstract class GUIElement {

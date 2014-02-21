@@ -3,7 +3,6 @@ package collision;
 import maths.MathmaticalMethods;
 import maths.MyVector2f;
 
-import org.lwjgl.util.vector.Vector2f;
 
 /**
  * @author Pavel

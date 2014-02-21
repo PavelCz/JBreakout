@@ -4,8 +4,6 @@ import graphics.BasicRenderObject;
 import graphics.Window;
 import maths.MyVector2f;
 
-import org.lwjgl.util.vector.Vector2f;
-
 public abstract class Entity {
 	protected BasicRenderObject renderObject;
 	protected Window gameWindow;

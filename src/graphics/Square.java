@@ -1,11 +1,9 @@
 package graphics;
 
-import org.lwjgl.util.vector.Vector2f;
 
 public class Square extends BasicRenderObject {
 	private Rectangle rectangle;
 
-	private float length;
 
 	/**
 	 * Default Square length is 1, just like a pixel
@@ -16,7 +14,6 @@ public class Square extends BasicRenderObject {
 	}
 	public Square(float length) {
 		this.rectangle = new Rectangle(length, length);
-		this.length = length;
 
 	}
 	public Square(float length, float r, float g, float b) {

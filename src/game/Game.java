@@ -4,10 +4,10 @@ import java.io.IOException;
 
 import graphics.BMP;
 import graphics.Image;
-import graphics.Score;
 import graphics.Square;
-import graphics.Healthbar;
 import graphics.Window;
+import gui.Healthbar;
+import gui.Score;
 import maths.MyVector2f;
 
 import org.lwjgl.Sys;

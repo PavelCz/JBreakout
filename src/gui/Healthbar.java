@@ -1,5 +1,6 @@
-package graphics;
+package gui;
 
+import graphics.TwoColoredBar;
 import maths.MyVector2f;
 
 public class Healthbar extends GUIElement {

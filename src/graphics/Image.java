@@ -1,7 +1,5 @@
 package graphics;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 
 import org.lwjgl.util.vector.Vector3f;
 

@@ -1,5 +1,6 @@
-package graphics;
+package gui;
 
+import graphics.PixelNumeral;
 import maths.MyVector2f;
 
 public class Score extends GUIElement {

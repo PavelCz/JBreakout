@@ -1,8 +1,5 @@
 package game;
 
-import java.io.IOException;
-
-import graphics.Score;
 
 public class Main {
 

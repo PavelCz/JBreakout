@@ -3,8 +3,6 @@ package game;
 import graphics.BasicRenderObject;
 import maths.MyVector2f;
 
-import org.lwjgl.util.vector.Vector2f;
-
 import collision.RectangleCollision;
 
 public class Ball extends Entity {
