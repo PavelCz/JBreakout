@@ -8,6 +8,7 @@ import graphics.Square;
 import graphics.Window;
 import gui.Healthbar;
 import gui.Score;
+import gui.Text;
 import maths.MyVector2f;
 
 import org.lwjgl.Sys;
@@ -33,21 +34,17 @@ public class Game {
 	private int counter1;
 	private Healthbar[] healthbars;
 	private Score[] scores;
+	private Text scoreText1;
+	private Text scoreText2;
 
 	// Tests:
-	Image test;
 	//
 	public Game() {
 		// Test:
-		BMP s = null;
-		try {
-			s = new BMP("./data/A.bmp");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		//
-		this.test = new Image( s.getPixels(), 10);
+		this.scoreText1 = new Text("./data/font", "L",200, 0,5);
+		this.scoreText2 = new Text("./data/font", "WUSS",200, 400,5);
 		this.running = true;
 		this.physicsPaused = false;
 		this.counter1 = 0;
@@ -82,10 +79,6 @@ public class Game {
 		int ballDiameter = 10;
 		this.ball = new Ball(this, 3f, 3f, ballDiameter, new Square(ballDiameter), new MyVector2f(0.1f, 0.5f));
 		this.ball.resetBall(1);
-		// this.blocks = new Block[3];
-		// this.blocks[0] = new Block(gameWindow, 100, 100);
-		// this.blocks[1] = new Block(gameWindow, 400, 500);
-		// this.blocks[2] = new Block(gameWindow, 300, 100);
 
 	}
 
@@ -126,7 +119,6 @@ public class Game {
 			racket.render();
 		}
 		ball.render();
-		test.render(50,50);
 		
 		this.renderGUI();
 
@@ -145,6 +137,9 @@ public class Game {
 			score.render();
 
 		}
+		
+		this.scoreText1.render();
+		this.scoreText2.render();
 	}
 
 	public void update(int delta) {

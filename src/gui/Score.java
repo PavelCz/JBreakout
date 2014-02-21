@@ -1,7 +1,6 @@
 package gui;
 
 import graphics.PixelNumeral;
-import maths.MyVector2f;
 
 public class Score extends GUIElement {
 	private int number;
@@ -9,10 +8,10 @@ public class Score extends GUIElement {
 	private boolean leftAligned;
 
 	public Score(int x, int y, int number, boolean leftAligned, float scale) {
+		super(x,y);
 		this.leftAligned = leftAligned;
 		this.number = number;
 		this.scale = scale;
-		this.coordinates = new MyVector2f(x, y);
 	}
 
 	public void setScore(int number) {

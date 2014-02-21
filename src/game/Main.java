@@ -1,5 +1,7 @@
 package game;
 
+import gui.Alphabet;
+
 
 public class Main {
 
@@ -12,6 +14,7 @@ public class Main {
 //			e.printStackTrace();
 //		}
 		
+		System.out.println((int)'C');
 		Game game = new Game();
 		game.init();
 		game.start();

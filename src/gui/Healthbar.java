@@ -1,10 +1,8 @@
 package gui;
 
 import graphics.TwoColoredBar;
-import maths.MyVector2f;
 
 public class Healthbar extends GUIElement {
-	protected MyVector2f coordinates;
 	private int maxHealth;
 	private float healthLeft;
 	private int length;
@@ -13,7 +11,7 @@ public class Healthbar extends GUIElement {
 	
 	
 	public Healthbar(float x, float y, int maxHealth, int length, int height) {
-		this.coordinates = new MyVector2f(x, y);
+		super(x,y);
 		this.maxHealth = maxHealth;
 		this.healthLeft = maxHealth;
 		this.length = length;
