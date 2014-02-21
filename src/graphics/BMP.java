@@ -3,14 +3,13 @@ package graphics;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public class ImageFromBMP extends AdvancedRenderObject {
-	private int width, height;
-	private float scale;
-	Square[][] pixels;
+import org.lwjgl.util.vector.Vector3f;
 
-	public ImageFromBMP(String path, float scale) throws IOException {
+public class BMP {
+	Vector3f[][] pixels;
+
+	public BMP(String path) throws IOException {
 		FileInputStream file = new FileInputStream(path);
-		this.scale = scale;
 		int size = file.available();
 		int[] bytes = new int[size];
 		System.out.println("size:" + size);
@@ -22,7 +21,7 @@ public class ImageFromBMP extends AdvancedRenderObject {
 			++i;
 		}
 		file.close();
-		
+
 		int bitmapFileHeader = 14;
 		size = bytes[2];
 		int whereStartsImage = bytes[10];
@@ -31,12 +30,14 @@ public class ImageFromBMP extends AdvancedRenderObject {
 		if (sizeOfDIBHeader != bytes[14]) {
 			throw new IllegalArgumentException("BIPHeader not stored correctly");
 		}
+		int width = 0;
+		int height = 0;
 		int bitsPerPixel = 0;
 		int compressionType = 0;
 		if (sizeOfDIBHeader == 40) {
 
-			this.width = bytes[18];
-			this.height = bytes[22];
+			width = bytes[18];
+			height = bytes[22];
 			bitsPerPixel = bytes[28];
 			compressionType = bytes[30];
 		} else {
@@ -49,7 +50,7 @@ public class ImageFromBMP extends AdvancedRenderObject {
 				int[][] pictureBytes = new int[size - 54][3];
 
 				System.out.println(size - 54);
-				int padding = this.width % 4;
+				int padding = width % 4;
 				for (int j = 0, k = 0; j < size - 54;) {
 					pictureBytes[k][0] = bytes[j + 54];
 					System.out.println(j + 54);
@@ -59,16 +60,16 @@ public class ImageFromBMP extends AdvancedRenderObject {
 					++j;
 					pictureBytes[k][2] = bytes[j + 54];
 					++j;
-					if (++k % this.width == 0 && k > 0) {
+					if (++k % width == 0 && k > 0) {
 						j += padding;
 					}
 
 				}
-				pixels = new Square[this.height][this.width];
+				pixels = new Vector3f[height][width];
 
 				int l = 0;
-				for (int j = this.height - 1; j >= 0; --j) {
-					for (int k = 0; k < this.width; ++k) {
+				for (int j = height - 1; j >= 0; --j) {
+					for (int k = 0; k < width; ++k) {
 
 						float r;
 						float g;
@@ -82,7 +83,7 @@ public class ImageFromBMP extends AdvancedRenderObject {
 						red = r / 255;
 						green = g / 255;
 						blue = b / 255;
-						pixels[j][k] = new Square(scale, red, green, blue);
+						pixels[j][k] = new Vector3f(red, green, blue);
 
 						++l;
 					}
@@ -97,13 +98,9 @@ public class ImageFromBMP extends AdvancedRenderObject {
 					"BMP can't be compressed for now. Another Compressiontype than 'no compression' (0) is currently not supported.");
 		}
 	}
-
-	public void render(float x, float y) {
-		for (int j = 0; j < this.height; ++j) {
-			for (int i = 0; i < this.height; ++i) {
-				this.pixels[j][i].render(x + i * scale, y + j * scale);
-
-			}
-		}
+	
+	public Vector3f[][] getPixels () {
+		return this.pixels;
 	}
+
 }

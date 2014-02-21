@@ -2,10 +2,9 @@ package game;
 
 import java.io.IOException;
 
-import graphics.Pixel;
-import graphics.PixelNumeral;
+import graphics.BMP;
+import graphics.Image;
 import graphics.Score;
-import graphics.ImageFromBMP;
 import graphics.Square;
 import graphics.Healthbar;
 import graphics.Window;
@@ -36,18 +35,19 @@ public class Game {
 	private Score[] scores;
 
 	// Tests:
-	private ImageFromBMP s;
-
+	Image test;
 	//
 	public Game() {
 		// Test:
+		BMP s = null;
 		try {
-			s = new ImageFromBMP("./data/A.bmp", 10);
+			s = new BMP("./data/A.bmp");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		//
+		this.test = new Image( s.getPixels(), 10);
 		this.running = true;
 		this.physicsPaused = false;
 		this.counter1 = 0;
@@ -126,7 +126,7 @@ public class Game {
 			racket.render();
 		}
 		ball.render();
-		s.render(50,50);
+		test.render(50,50);
 		
 		this.renderGUI();
 

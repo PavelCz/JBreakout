@@ -3,7 +3,6 @@ package game;
 import java.io.IOException;
 
 import graphics.Score;
-import graphics.ImageFromBMP;
 
 public class Main {
 
