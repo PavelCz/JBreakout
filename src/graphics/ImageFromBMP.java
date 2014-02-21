@@ -35,8 +35,8 @@ public class ImageFromBMP extends AdvancedRenderObject {
 		int compressionType = bytes[30];
 		int whereStartsImage = bytes[10];
 		int sizeOfDIBHeader = bytes[14];
-		System.out.println(sizeOfDIBHeader);
-		System.out.println(bytes[33]);
+		System.out.println(size);
+		System.out.println(bytes[22]);
 		System.out.println((char) bytes[0] + "" + (char) bytes[1]);
 		System.out.println(bytes[1]);
 		System.out.println(bytes[0] + bytes[1]);
@@ -45,7 +45,7 @@ public class ImageFromBMP extends AdvancedRenderObject {
 			if (bitsPerPixel == 24) {
 				if (sizeOfDIBHeader == 40) {
 					this.width = bytes[18];
-					this.height = bytes[18];
+					this.height = bytes[22];
 					// System.out.println(bitsPerPixel);
 					// System.out.println(whereStartsImage);
 					// System.out.println(sizeOfTheFile);
@@ -54,14 +54,26 @@ public class ImageFromBMP extends AdvancedRenderObject {
 					int[][] pictureBytes = new int[size - 54][3];
 
 					System.out.println(size - 54);
-					for (int j = 54, k = 0; j < size; j += 2, ++k) {
-						System.out.println("K:" + k);
-						pictureBytes[k][0] = bytes[j];
-						System.out.println(j);
-						pictureBytes[k][1] = bytes[++j];
-						System.out.println(j);
-						pictureBytes[k][2] = bytes[++j];
-						System.out.println(j);
+					int padding = this.width % 4;
+					for (int j = 0, k = 0; j < size - 54; ) {
+						
+						//System.out.println(k);
+						//System.out.println(j );
+						// System.out.println("K:" + k);
+						pictureBytes[k][0] = bytes[j + 54]; 
+						 System.out.println(j + 54);
+						++j;
+						
+						pictureBytes[k][1] = bytes[j + 54];
+						++j;
+						// System.out.println(j);
+						pictureBytes[k][2] = bytes[j + 54];
+						++j;
+						// System.out.println(j);
+						if(++k % this.width == 0 && k > 0) {
+							j += padding;
+						}
+						
 					}
 					System.out.println("+++" + pictureBytes[19][0]);
 					System.out.println("+++" + pictureBytes[19][1]);
