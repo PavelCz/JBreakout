@@ -14,7 +14,7 @@ public class Main {
 //			e.printStackTrace();
 //		}
 		
-		System.out.println((int)'C');
+		System.out.println((int)'A');
 		Game game = new Game();
 		game.init();
 		game.start();

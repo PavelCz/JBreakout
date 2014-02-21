@@ -43,7 +43,7 @@ public class Game {
 		// Test:
 		
 		//
-		this.scoreText1 = new Text("./data/font", "L",200, 0,5);
+		this.scoreText1 = new Text("./data/font", "A",200, 0,5);
 		this.scoreText2 = new Text("./data/font", "WUSS",200, 400,5);
 		this.running = true;
 		this.physicsPaused = false;

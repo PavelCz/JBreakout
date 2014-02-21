@@ -21,7 +21,6 @@ public class Text extends GUIElement {
 		for (int i = 0; i < 26; ++i) {
 			letters[i] = new Image(folder +"/"+ alphabet.getLetter(i) + ".bmp", this.scale);
 
-			++i;
 		}
 	}
 
