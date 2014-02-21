@@ -1,12 +1,7 @@
 package graphics;
 
-import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 public class ImageFromBMP extends AdvancedRenderObject {
 	private int width, height;
@@ -101,11 +96,6 @@ public class ImageFromBMP extends AdvancedRenderObject {
 			throw new IllegalArgumentException(
 					"BMP can't be compressed for now. Another Compressiontype than 'no compression' (0) is currently not supported.");
 		}
-
-		// System.out.println(bytes[22]);
-		/*
-		 * for (int j = 0; j < bytes.length; ++j) { System.out.println(bytes[j]); } System.out.print("\n");
-		 */
 	}
 
 	public void render(float x, float y) {
