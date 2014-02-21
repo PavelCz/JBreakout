@@ -14,8 +14,6 @@ public class ImageFromBMP extends AdvancedRenderObject {
 	Square[][] pixels;
 
 	public ImageFromBMP(String path, float scale) throws IOException {
-
-		// "inspired" by lecture info1
 		FileInputStream file = new FileInputStream(path);
 		this.scale = scale;
 		int size = file.available();
@@ -29,96 +27,79 @@ public class ImageFromBMP extends AdvancedRenderObject {
 			++i;
 		}
 		file.close();
-		int numberColorsUsed = bytes[46];
+		
+		int bitmapFileHeader = 14;
 		size = bytes[2];
-		int bitsPerPixel = bytes[28];
-		int compressionType = bytes[30];
 		int whereStartsImage = bytes[10];
-		int sizeOfDIBHeader = bytes[14];
-		System.out.println(size);
-		System.out.println(bytes[22]);
-		System.out.println((char) bytes[0] + "" + (char) bytes[1]);
-		System.out.println(bytes[1]);
-		System.out.println(bytes[0] + bytes[1]);
+
+		int sizeOfDIBHeader = whereStartsImage - bitmapFileHeader;
+		if (sizeOfDIBHeader != bytes[14]) {
+			throw new IllegalArgumentException("BIPHeader not stored correctly");
+		}
+		int bitsPerPixel = 0;
+		int compressionType = 0;
+		if (sizeOfDIBHeader == 40) {
+
+			this.width = bytes[18];
+			this.height = bytes[22];
+			bitsPerPixel = bytes[28];
+			compressionType = bytes[30];
+		} else {
+			throw new IllegalArgumentException("Not the right BIP header, must be 40 (BITMAPINFOHEADER");
+		}
 
 		if (compressionType == 0) {
 			if (bitsPerPixel == 24) {
-				if (sizeOfDIBHeader == 40) {
-					this.width = bytes[18];
-					this.height = bytes[22];
-					// System.out.println(bitsPerPixel);
-					// System.out.println(whereStartsImage);
-					// System.out.println(sizeOfTheFile);
-					// System.out.println("Colors: " + numberColorsUsed);
 
-					int[][] pictureBytes = new int[size - 54][3];
+				int[][] pictureBytes = new int[size - 54][3];
 
-					System.out.println(size - 54);
-					int padding = this.width % 4;
-					for (int j = 0, k = 0; j < size - 54; ) {
-						
-						//System.out.println(k);
-						//System.out.println(j );
-						// System.out.println("K:" + k);
-						pictureBytes[k][0] = bytes[j + 54]; 
-						 System.out.println(j + 54);
-						++j;
-						
-						pictureBytes[k][1] = bytes[j + 54];
-						++j;
-						// System.out.println(j);
-						pictureBytes[k][2] = bytes[j + 54];
-						++j;
-						// System.out.println(j);
-						if(++k % this.width == 0 && k > 0) {
-							j += padding;
-						}
-						
-					}
-					System.out.println("+++" + pictureBytes[19][0]);
-					System.out.println("+++" + pictureBytes[19][1]);
-					System.out.println("+++" + pictureBytes[19][2]);
-					pixels = new Square[this.height][this.width];
-					int[][] pixels2 = new int[this.height][this.width];
+				System.out.println(size - 54);
+				int padding = this.width % 4;
+				for (int j = 0, k = 0; j < size - 54;) {
+					pictureBytes[k][0] = bytes[j + 54];
+					System.out.println(j + 54);
+					++j;
 
-					int l = 0;
-					for (int j = this.height - 1; j >= 0; --j) {
-						for (int k = 0; k < this.width; ++k) {
-
-							float r;
-							float g;
-							float b;
-							float red;
-							float green;
-							float blue;
-							b = pictureBytes[l][0];
-							g = pictureBytes[l][1];
-							r = pictureBytes[l][2];
-							red = r / 255;
-							green = g / 255;
-							blue = b / 255;
-							pixels[j][k] = new Square(scale, red, green, blue);
-							//pixels2[j][k] = g;
-
-							++l;
-						}
+					pictureBytes[k][1] = bytes[j + 54];
+					++j;
+					pictureBytes[k][2] = bytes[j + 54];
+					++j;
+					if (++k % this.width == 0 && k > 0) {
+						j += padding;
 					}
 
-					for (int[] js : pixels2) {
-						for (int j : js) {
-							// System.out.println(j);
-						}
-					}
-				} else {
-					throw new IllegalArgumentException("Not the right BIP header, must be 40 (BITMAPINFOHEADER");
 				}
+				pixels = new Square[this.height][this.width];
+
+				int l = 0;
+				for (int j = this.height - 1; j >= 0; --j) {
+					for (int k = 0; k < this.width; ++k) {
+
+						float r;
+						float g;
+						float b;
+						float red;
+						float green;
+						float blue;
+						b = pictureBytes[l][0];
+						g = pictureBytes[l][1];
+						r = pictureBytes[l][2];
+						red = r / 255;
+						green = g / 255;
+						blue = b / 255;
+						pixels[j][k] = new Square(scale, red, green, blue);
+
+						++l;
+					}
+				}
+
 			} else {
 				throw new IllegalArgumentException("BMP must have 24 bits/pixel for now. Other Values are currently not supported.");
 			}
 
 		} else {
 			throw new IllegalArgumentException(
-					"BMP can't be compressed for now. Another Compressiontype than 'no compression' is currently not supported.");
+					"BMP can't be compressed for now. Another Compressiontype than 'no compression' (0) is currently not supported.");
 		}
 
 		// System.out.println(bytes[22]);
